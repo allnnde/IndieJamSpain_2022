@@ -2,20 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static PlayerControls;
 
 public class PlayerMovement : MonoBehaviour
 {
 
     public float moveSpeed = 5f;
     public Rigidbody2D rigidBody;
-    private PlayerActions playerControls;
+    private PlayerControls playerControls;
     public bool canMove = true;
 
 
     private void Awake()
     {
-        playerControls = new PlayerActions();
+        playerControls = new PlayerControls();
         playerControls.Enable();
     }
 
@@ -42,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move()
     {
-        var moviment = playerControls.Movement.ReadValue<Vector2>();
+        var moviment = playerControls.Player.Movement.ReadValue<Vector2>();
         var newPosition = rigidBody.position + moviment * moveSpeed * Time.fixedDeltaTime;
         rigidBody.MovePosition(newPosition);
     }
