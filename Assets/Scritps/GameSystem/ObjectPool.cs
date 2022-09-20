@@ -41,7 +41,6 @@ public class ObjectPool
             for (int i = 0; i < _pool.Size; i++)
             {
                 var obj = InstanciatePoolObject(_pool);
-                obj.name += $" - {_pool.Tag}";
                 _inactivedObject[_pool.Tag].Add(obj);
             }
         }
@@ -50,6 +49,8 @@ public class ObjectPool
     private GameObject InstanciatePoolObject(Pool pool)
     {
         var obj = GameObject.Instantiate(pool.Item.Owner, Vector3.zero, Quaternion.identity);
+        var totalObject = _inactivedObject[pool.Tag].Count + _activedObject[pool.Tag].Count;
+        obj.name += $" - {pool.Tag}_{totalObject.ToString().PadLeft(5, '0')}";
         var poolable = obj.GetComponent<IPoolable>();
         poolable.OnInstanciate(pool.Parent);
         return obj;

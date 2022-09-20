@@ -6,16 +6,21 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     public int counter;
-    public string tagpoll;
-    public Transform Route;
+    public string tagpool;
 
     private async void Start()
     {
-        for (int i = 0; i < counter; i++)
-        {
-            ObjectPool.Instance.Spawn(tagpoll, transform.position, transform.rotation);
-            await Task.Delay(1000);
-        }
+        await CreateWave();
     }
 
+    public async Task CreateWave()
+    {
+        for (int i = 0; i < counter; i++)
+        {
+            var randomPosition = Random.insideUnitCircle * 5;
+            Vector2 finalPosition = transform.position + new Vector3(randomPosition.x, randomPosition.y, 0);
+            ObjectPool.Instance.Spawn(tagpool, finalPosition, transform.rotation);
+            await Task.Delay(100);
+        }
+    }
 }
