@@ -2,20 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static PlayerControls;
 
 public class PlayerMovement : MonoBehaviour
 {
 
     public float moveSpeed = 5f;
     public Rigidbody2D rigidBody;
-    private PlayerControls playerControls;
-    private Vector2 movement = Vector2.zero;
+    private PlayerActions playerControls;
     public bool canMove = true;
 
 
     private void Awake()
     {
-        playerControls = new PlayerControls();
+        playerControls = new PlayerActions();
         playerControls.Enable();
     }
 
@@ -32,14 +32,18 @@ public class PlayerMovement : MonoBehaviour
     // Calls 1 time per frame
     void Update()
     {
-        movement.x = playerControls.Player.Movement.ReadValue<Vector2>().x;
-        movement.y = playerControls.Player.Movement.ReadValue<Vector2>().y;
     }
-
     
     // Calls 50 times a second, better to use with physics
     void FixedUpdate()
     {
-        rigidBody.MovePosition(rigidBody.position + movement * moveSpeed * Time.fixedDeltaTime);
+        Move();
+    }
+
+    private void Move()
+    {
+        var moviment = playerControls.Movement.ReadValue<Vector2>();
+        var newPosition = rigidBody.position + moviment * moveSpeed * Time.fixedDeltaTime;
+        rigidBody.MovePosition(newPosition);
     }
 }
