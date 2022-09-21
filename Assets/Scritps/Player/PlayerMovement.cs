@@ -42,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
     {
         var playerActions = playerScript.getPlayerControls().Player;
         var movement = playerActions.Movement.ReadValue<Vector2>();
-        var newPosition = rigidBody.position + movement * playerScript.moveSpeed; * Time.fixedDeltaTime;
+        var newPosition = rigidBody.position + movement * playerScript.moveSpeed * Time.fixedDeltaTime;
         rigidBody.MovePosition(newPosition);
     }
 }
