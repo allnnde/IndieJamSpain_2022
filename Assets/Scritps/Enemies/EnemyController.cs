@@ -51,6 +51,9 @@ public class EnemyController : MonoBehaviour, IPoolable
         if (collision.gameObject.CompareTag("Player"))
         {
             Debug.Log("Player golpeado!!!!");
+
+            // TODO: Hacer estadística de daño y ponerlo aquí.
+            collision.gameObject.GetComponent<PlayerScript>().TakeDamage(2f);
             ObjectPool.Instance.Despawn("basic", Owner);
         }
     }
