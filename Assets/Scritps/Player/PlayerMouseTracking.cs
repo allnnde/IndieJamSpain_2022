@@ -19,27 +19,31 @@ public class PlayerMouseTracking : MonoBehaviour
         return new Vector2(Mathf.Cos(radian), Mathf.Sin(radian));
     }
 
-    public static Vector2 DegreeToVector2(float degree, bool rounded = false)
-    {
-        Vector2 result = RadianToVector2(degree * Mathf.Deg2Rad);
-        result = (rounded) ? new Vector2(Mathf.RoundToInt(result.x), Mathf.RoundToInt(result.y)) : result;
-        return result;
-    }
 
-    public float DegreeToMouse(Vector3 mousePosition)
+    public float DegreeTowardsMouse()
     {
-        Vector3 dir = mousePosition - transform.position;
+        Vector3 dir = GetMousePosition() - transform.position;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         return angle;
     }
 
-
-    public Vector2 Vector2ToMouse(Vector3 mousePosition, bool rounded = false)
+    public Quaternion QuaternionTowardsMouse()
     {
-        return DegreeToVector2(DegreeToMouse(mousePosition), rounded);
+        Vector3 vector = new Vector3(0, 0, DegreeTowardsMouse() - 90);
+        Quaternion result = Quaternion.identity;
+        result.eulerAngles = vector;
+        return result;
     }
 
-    private Vector3 GetMousePosition()
+
+    public Vector2 Vector2TowardsMouse(bool rounded = false)
+    {
+        Vector2 result = RadianToVector2(DegreeTowardsMouse() * Mathf.Deg2Rad);
+        result = (rounded) ? new Vector2(Mathf.RoundToInt(result.x), Mathf.RoundToInt(result.y)) : result;
+        return result;
+    }
+
+    public Vector3 GetMousePosition()
     {
         return Camera.main.ScreenToWorldPoint(Input.mousePosition);
     }
@@ -47,10 +51,7 @@ public class PlayerMouseTracking : MonoBehaviour
     // Funcion Test para hacer Debug, se borrará en el final
     private void TestGetAngles()
     {
-        Vector3 mousePosition = GetMousePosition();
-        float angle = DegreeToMouse(mousePosition);
-
-        Debug.Log("Direction Angle: " + angle + " Direction Vector: " + DegreeToVector2(angle));
+        Debug.Log("Direction Angle: " + DegreeTowardsMouse() + " Direction Vector: " + Vector2TowardsMouse());
     }
 
     private void SetMouseSpritePosition()
@@ -65,7 +66,7 @@ public class PlayerMouseTracking : MonoBehaviour
     {
         if (canDetect)
         {
-            TestGetAngles();
+            //TestGetAngles();
 
             if(mouseSprite != null)
             {
