@@ -130,10 +130,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1711183396457539228, guid: 5995c8bfd6f3c1d43b164979494b2750, type: 3}
-      propertyPath: tagpool
-      value: basic
-      objectReference: {fileID: 0}
     - target: {fileID: 1711183396457539229, guid: 5995c8bfd6f3c1d43b164979494b2750, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -182,10 +178,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySpawner (4)
       objectReference: {fileID: 0}
-    - target: {fileID: 1711183396457539231, guid: 5995c8bfd6f3c1d43b164979494b2750, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5995c8bfd6f3c1d43b164979494b2750, type: 3}
 --- !u!1001 &541791641
@@ -195,10 +187,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1711183396457539228, guid: 5995c8bfd6f3c1d43b164979494b2750, type: 3}
-      propertyPath: tagpool
-      value: basic
-      objectReference: {fileID: 0}
     - target: {fileID: 1711183396457539229, guid: 5995c8bfd6f3c1d43b164979494b2750, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -247,10 +235,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySpawner (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 1711183396457539231, guid: 5995c8bfd6f3c1d43b164979494b2750, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5995c8bfd6f3c1d43b164979494b2750, type: 3}
 --- !u!1001 &784932447
@@ -260,10 +244,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1711183396457539228, guid: 5995c8bfd6f3c1d43b164979494b2750, type: 3}
-      propertyPath: tagpool
-      value: basic
-      objectReference: {fileID: 0}
     - target: {fileID: 1711183396457539229, guid: 5995c8bfd6f3c1d43b164979494b2750, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -312,10 +292,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySpawner (3)
       objectReference: {fileID: 0}
-    - target: {fileID: 1711183396457539231, guid: 5995c8bfd6f3c1d43b164979494b2750, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5995c8bfd6f3c1d43b164979494b2750, type: 3}
 --- !u!1001 &931954897
@@ -325,10 +301,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1711183396457539228, guid: 5995c8bfd6f3c1d43b164979494b2750, type: 3}
-      propertyPath: tagpool
-      value: basic
-      objectReference: {fileID: 0}
     - target: {fileID: 1711183396457539229, guid: 5995c8bfd6f3c1d43b164979494b2750, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -376,10 +348,6 @@ PrefabInstance:
     - target: {fileID: 1711183396457539231, guid: 5995c8bfd6f3c1d43b164979494b2750, type: 3}
       propertyPath: m_Name
       value: EnemySpawner (5)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1711183396457539231, guid: 5995c8bfd6f3c1d43b164979494b2750, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5995c8bfd6f3c1d43b164979494b2750, type: 3}
@@ -474,10 +442,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1711183396457539228, guid: 5995c8bfd6f3c1d43b164979494b2750, type: 3}
-      propertyPath: tagpool
-      value: basic
-      objectReference: {fileID: 0}
     - target: {fileID: 1711183396457539229, guid: 5995c8bfd6f3c1d43b164979494b2750, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -526,10 +490,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySpawner (6)
       objectReference: {fileID: 0}
-    - target: {fileID: 1711183396457539231, guid: 5995c8bfd6f3c1d43b164979494b2750, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5995c8bfd6f3c1d43b164979494b2750, type: 3}
 --- !u!1001 &1930593097
@@ -539,10 +499,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1711183396457539228, guid: 5995c8bfd6f3c1d43b164979494b2750, type: 3}
-      propertyPath: tagpool
-      value: basic
-      objectReference: {fileID: 0}
     - target: {fileID: 1711183396457539229, guid: 5995c8bfd6f3c1d43b164979494b2750, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -590,10 +546,6 @@ PrefabInstance:
     - target: {fileID: 1711183396457539231, guid: 5995c8bfd6f3c1d43b164979494b2750, type: 3}
       propertyPath: m_Name
       value: EnemySpawner (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1711183396457539231, guid: 5995c8bfd6f3c1d43b164979494b2750, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5995c8bfd6f3c1d43b164979494b2750, type: 3}
@@ -661,10 +613,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1052556690526546532, guid: ac03bbbaf9158414899d6fed507cd241, type: 3}
-      propertyPath: enemyBasicController
-      value: 
-      objectReference: {fileID: 3024672621678855272, guid: d34c4c8f7b9a5f3459020ea828e0bfcc, type: 3}
     - target: {fileID: 1052556690526546533, guid: ac03bbbaf9158414899d6fed507cd241, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -722,14 +670,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1711183396457539228, guid: 5995c8bfd6f3c1d43b164979494b2750, type: 3}
-      propertyPath: counter
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1711183396457539228, guid: 5995c8bfd6f3c1d43b164979494b2750, type: 3}
-      propertyPath: tagpool
-      value: basic
-      objectReference: {fileID: 0}
     - target: {fileID: 1711183396457539229, guid: 5995c8bfd6f3c1d43b164979494b2750, type: 3}
       propertyPath: m_RootOrder
       value: 3
