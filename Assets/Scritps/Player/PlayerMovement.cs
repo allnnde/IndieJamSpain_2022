@@ -15,7 +15,6 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         playerScript = this.gameObject.GetComponent<PlayerScript>();
-        moveSpeed = playerScript.moveSpeed;
     }
 
     /*
@@ -43,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
     {
         var playerActions = playerScript.getPlayerControls().Player;
         var movement = playerActions.Movement.ReadValue<Vector2>();
-        var newPosition = rigidBody.position + movement * moveSpeed * Time.fixedDeltaTime;
+        var newPosition = rigidBody.position + movement * playerScript.moveSpeed; * Time.fixedDeltaTime;
         rigidBody.MovePosition(newPosition);
     }
 }

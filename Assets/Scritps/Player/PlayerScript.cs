@@ -54,16 +54,6 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float dmg)
-    {
-        var healthLeft = health - dmg;
-        health = Mathf.Max(0, healthLeft);
-
-        if (health == 0)
-        {
-            Die();
-        }
-    }
 
     private void Die()
     {
