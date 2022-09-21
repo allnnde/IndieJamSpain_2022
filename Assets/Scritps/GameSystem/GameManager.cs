@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
 
     public EnemyController enemyBasicController;
+    public BulletScript bulletScript;
     public EnemySpawner[] enemiesSpawners;
 
     private float time = 0;
@@ -16,6 +17,7 @@ public class GameManager : MonoBehaviour
     {
         ObjectPool.Instance.Pools = new List<Pool>();
         ObjectPool.Instance.Pools.Add(new Pool { Item = enemyBasicController, Parent = transform.transform, Size = 20, Tag = "basic" });
+        ObjectPool.Instance.Pools.Add(new Pool { Item = bulletScript, Parent = transform.transform, Size = 50, Tag = "bullet" });
         ObjectPool.Instance.Start();
 
         enemiesSpawners = FindObjectsOfType<EnemySpawner>(false);
