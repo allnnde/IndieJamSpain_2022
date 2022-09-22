@@ -23,11 +23,8 @@ public class WeaponSword : WeaponObject
     // Update is called once per frame
     public override void CreateBullets()
     {
-        // FIXME: Ni puta idea de como hacer un boxcast julio
         //var layer = LayerMask.GetMask("Enemy");
         hits = Physics2D.CircleCastAll(transform.position, range, Vector2.zero);
-        //hits = Physics2D.BoxCastAll(transform.position, range, playerMouse.DegreeTowardsMouse(), playerMouse.Vector2TowardsMouse(), range.x / 2);
-        // new Vector3(transform.position.x + (range.x / 2), transform.position.y, transform.position.z), new Vector3(range.x, range.y , 0)
         foreach (var item in hits)
         {
             if (item.collider.gameObject.CompareTag("Enemy"))

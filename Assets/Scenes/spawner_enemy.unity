@@ -675,6 +675,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1981385253958922281, guid: 8922056a328865d4481db081f075fbab, type: 3}
+      propertyPath: weapons.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2335648365232388112, guid: 8922056a328865d4481db081f075fbab, type: 3}
       propertyPath: m_Name
       value: Player

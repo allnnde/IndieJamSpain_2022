@@ -8,19 +8,41 @@ public class PlayerWeaponSystem : MonoBehaviour
     public WeaponObject[] weapons;
 
     private PlayerScript playerScript;
-    public bool canMove = true;
+    public bool canShoot = true;
+    private int selectedWeapon = 0;
 
 
     private void Awake()
     {
         playerScript = this.gameObject.GetComponent<PlayerScript>();
+        var playerControls = playerScript.getPlayerControls();
+        playerControls.Weapons.SwitchTo1.performed += (InputAction.CallbackContext context) => SwitchWeapon(0);
+
+        //FIXME: WeaponObject[] no es una array?????
+        // Esto tira error:
+        // weapons[0] = new WeaponSword();
     }
 
-    
-    // Calls 1 time per frame
-    void Update()
+    private void SwitchWeapon(int weapon)
     {
+        Debug.Log("Switching to weapon: " + weapon);
+        if (weapons.Length >= weapon && weapons[weapon] != null)
+        {
+            selectedWeapon = weapon;
+        }
     }
 
-    
+
+    private void FixedUpdate()
+    {
+        var ShootAction = playerScript.getPlayerControls().Player.Shoot;
+        var isShooting = System.Convert.ToBoolean(ShootAction.ReadValue<float>());
+
+        if (canShoot && weapons[selectedWeapon] != null && isShooting)
+        {
+            weapons[selectedWeapon].TryShoot();
+        }
+    }
+
+
 }

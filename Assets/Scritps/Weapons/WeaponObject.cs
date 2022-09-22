@@ -8,7 +8,6 @@ public abstract class WeaponObject : MonoBehaviour
     [HideInInspector] public PlayerScript playerScript;
 
     public float fireRate = 0.2f;
-    [HideInInspector] public bool canShoot = true;
     public float bulletSpeed = 20f;
     protected float damage;
 
@@ -37,22 +36,13 @@ public abstract class WeaponObject : MonoBehaviour
     public abstract void SetValues();
     public abstract void CreateBullets();
 
-    private bool WillShoot()
+    public void TryShoot()
     {
-        var ShootAction = playerScript.getPlayerControls().Player.Shoot;
-        var isShooting = System.Convert.ToBoolean(ShootAction.ReadValue<float>());
-        
-        return (isShooting && canShoot && (Time.time > timeUntilShoot));
-    }
-
-    // Calls 50 times a second, better to use with physics
-    void FixedUpdate()
-    {
-        if(WillShoot())
-        {
+        if (Time.time > timeUntilShoot)
+        { 
             Shoot();
         }
     }
 
-    
+ 
 }
