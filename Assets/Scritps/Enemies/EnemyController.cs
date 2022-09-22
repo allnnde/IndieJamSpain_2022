@@ -6,7 +6,6 @@ public class EnemyController : MonoBehaviour, IPoolable
 {
     public GameObject Owner => gameObject;
     public string tagPlayer = "Player";
-    public float speed= 2;
     private GameObject player;
 
     public void OnInstanciate(Transform parent)
@@ -43,7 +42,7 @@ public class EnemyController : MonoBehaviour, IPoolable
     {
         var playerPosition = player.transform.position;
         var direction = playerPosition - transform.position;
-        transform.position += direction.normalized * Time.deltaTime * speed;
+        transform.position += direction.normalized * Time.deltaTime;
     }
 
 
@@ -53,6 +52,8 @@ public class EnemyController : MonoBehaviour, IPoolable
         {
             Debug.Log("Player golpeado!!!!");
 
+            // TODO: Hacer estadística de daño y ponerlo aquí.
+            collision.gameObject.GetComponent<PlayerScript>().TakeDamage(2f);
             ObjectPool.Instance.Despawn("basic", Owner);
         }
     }

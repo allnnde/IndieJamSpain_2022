@@ -6,10 +6,9 @@ using UnityEngine.InputSystem;
 public class PlayerWeaponSystem : MonoBehaviour
 {
 
-    public GameObject bulletPrefab;
 
-    private PlayerMouseTracking playerMouse = null;
-    private PlayerControls playerControls;
+    private PlayerMouseTracking playerMouse;
+    private PlayerScript playerScript;
 
     public float fireRate = 0.2f;
     private bool canShoot = true;
@@ -20,9 +19,7 @@ public class PlayerWeaponSystem : MonoBehaviour
     private void Awake()
     {
         playerMouse = this.gameObject.GetComponent<PlayerMouseTracking>();
-        playerControls = new PlayerControls();
-        playerControls.Enable();
-        //playerControls.Player.Shoot.performed += Shoot;
+        playerScript = this.gameObject.GetComponent<PlayerScript>();
     }
 
 
@@ -30,23 +27,29 @@ public class PlayerWeaponSystem : MonoBehaviour
     {
         timeUntilShoot = Time.time + fireRate;
 
-
         GameObject bullet = ObjectPool.Instance.Spawn("bullet", transform.position, playerMouse.QuaternionTowardsMouse());
         
         Rigidbody2D bulletRB = bullet.GetComponent<Rigidbody2D>();
         bulletRB.AddForce(bullet.transform.up * bulletSpeed, ForceMode2D.Impulse);
     }
+
     // Start is called before the first frame update
     void Start()
     {
         
     }
 
+    private bool WillShoot()
+    {
+        var ShootAction = playerScript.getPlayerControls().Player.Shoot;
+        var isShooting = System.Convert.ToBoolean(ShootAction.ReadValue<float>());
+        return (isShooting && canShoot && (Time.time > timeUntilShoot));
+    }
+
     // Calls 50 times a second, better to use with physics
     void FixedUpdate()
     {
-        bool isShooting = System.Convert.ToBoolean(playerControls.Player.Shoot.ReadValue<float>());
-        if(isShooting && canShoot && (Time.time > timeUntilShoot))
+        if(WillShoot())
         {
             Shoot();
         }

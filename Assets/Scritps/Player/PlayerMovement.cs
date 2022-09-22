@@ -5,17 +5,16 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-
-    public float moveSpeed = 5f;
-    public Rigidbody2D rigidBody;
     private PlayerControls playerControls;
+
+    public Rigidbody2D rigidBody;
+    private PlayerScript playerScript;
     public bool canMove = true;
 
 
     private void Awake()
     {
-        playerControls = new PlayerControls();
-        playerControls.Enable();
+        playerScript = this.gameObject.GetComponent<PlayerScript>();
     }
 
     /*
@@ -41,8 +40,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move()
     {
-        var moviment = playerControls.Player.Movement.ReadValue<Vector2>();
-        var newPosition = rigidBody.position + moviment * moveSpeed * Time.fixedDeltaTime;
+        var playerActions = playerScript.getPlayerControls().Player;
+        var movement = playerActions.Movement.ReadValue<Vector2>();
+        var newPosition = rigidBody.position + movement * playerScript.moveSpeed * Time.fixedDeltaTime;
         rigidBody.MovePosition(newPosition);
     }
 }

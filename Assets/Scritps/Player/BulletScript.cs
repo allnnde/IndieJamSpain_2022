@@ -5,18 +5,23 @@ using UnityEngine;
 public class BulletScript : MonoBehaviour, IPoolable
 {
     public float bulletTime = -1f;
-    public GameObject Owner => gameObject;    
-  
-    private void OnTriggerEnter2D(Collider2D collision)
+    public GameObject Owner => gameObject;
+
+    
+    void OnCollisionEnter2D(Collision2D other)
     {
         // Aqui ponemos pa dañar al enemigo/jugador
-        // FIXME: Cuando se destruye, ya no se mueren al tocar el jugador (Seguramente por ser un simple Destroy)
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Enemy"))
         {
-            ObjectPool.Instance.Despawn("basic", collision.gameObject);
+            ObjectPool.Instance.Despawn("basic", other.gameObject);
         }
 
         ObjectPool.Instance.Despawn("bullet", Owner);
+
+        if (bulletTime >= 0)
+        {
+            // Despawnear despues de "bulletTime" tiempo
+        }
     }
 
     void OnBecameInvisible()
