@@ -5,10 +5,12 @@ using UnityEngine;
 public class PlayerScript : MonoBehaviour
 {
 
-    public float health;
+    [HideInInspector] public float health;
     public float maxHealth = 10f;
     public float moveSpeed = 5f;
     public float pickupRange = 30f;
+    public float minDamage = 5f;
+    public float maxDamage = 7f;
     
     public float rageOnDamage = 30f;
     public float rageOnHit = 5f;
@@ -31,16 +33,18 @@ public class PlayerScript : MonoBehaviour
         return playerControls;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+
+    private void OnEnable() {
+        playerControls.Enable();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDisable() {
+        playerControls.Disable();
+    }
+
+    public float GetDamage(bool randomized = true)
     {
-        
+        return (randomized) ? (Mathf.Round(Random.Range(minDamage, maxDamage) * 10.0f) * 0.1f) : maxDamage;
     }
 
     public void TakeDamage(float dmg)
@@ -58,7 +62,7 @@ public class PlayerScript : MonoBehaviour
     private void Die()
     {
         Debug.Log("He muerto nooooOOoOoOOoOooOOO");
-        Destroy(this.gameObject);
+        //gameObject.setActive(false);
     }
 
     public void AddRage(float quantity)
