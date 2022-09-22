@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour, IPoolable
+public abstract class EnemyController : MonoBehaviour, IPoolable
 {
     public GameObject Owner => gameObject;
     public string tagPlayer = "Player";
     public float speed = 2;
-    private GameObject player;
+    protected GameObject player;
 
     public void OnInstanciate(Transform parent)
     {
@@ -39,24 +39,17 @@ public class EnemyController : MonoBehaviour, IPoolable
         Move();
     }
 
-    private void Move()
-    {
-        var playerPosition = player.transform.position;
-        var direction = playerPosition - transform.position;
-        transform.position += direction.normalized * Time.deltaTime * speed;
-    }
-
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        var target = collision.gameObject;
+        if (target.CompareTag("Player"))
         {
-            Debug.Log("Player golpeado!!!!");
-
-            // TODO: Hacer estadística de daño y ponerlo aquí.
-            collision.gameObject.GetComponent<PlayerScript>().TakeDamage(2f);
+            DamageTarget(target.GetComponent<PlayerScript>());
             ObjectPool.Instance.Despawn("basic", Owner);
         }
     }
 
+    public abstract void DamageTarget(PlayerScript player);
+    public abstract void Move();
 }

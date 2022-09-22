@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletScript : MonoBehaviour, IPoolable
+public class EnemyBulletScript : MonoBehaviour, IPoolable
 {
     public float bulletTime = -1f;
     public GameObject Owner => gameObject;
@@ -13,10 +13,10 @@ public class BulletScript : MonoBehaviour, IPoolable
         // Aqui ponemos pa dañar al enemigo/jugador
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            ObjectPool.Instance.Despawn("basic", collision.gameObject);
+            ObjectPool.Instance.Despawn(PoolTagsConstants.MELEE_ENEMY_POOL_TAG, collision.gameObject);
         }
 
-        ObjectPool.Instance.Despawn("bullet", Owner);
+        ObjectPool.Instance.Despawn(PoolTagsConstants.BULLET_PLAYER_POOL_TAG, Owner);
 
         if (bulletTime >= 0)
         {
@@ -26,7 +26,7 @@ public class BulletScript : MonoBehaviour, IPoolable
 
     void OnBecameInvisible()
     {
-        ObjectPool.Instance.Despawn("bullet", Owner);
+        ObjectPool.Instance.Despawn(PoolTagsConstants.BULLET_PLAYER_POOL_TAG, Owner);
     }
 
     public void OnInstanciate(Transform parent)
