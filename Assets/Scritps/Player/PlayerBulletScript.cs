@@ -4,40 +4,24 @@ using UnityEngine;
 
 public class PlayerBulletScript : MonoBehaviour, IPoolable
 {
-    public float bulletTime = -1f;
     public GameObject Owner => gameObject;
-
-  
+    public string PoolTag { get; set; }
     void OnTriggerEnter2D(Collider2D collision)
     {
         // Aqui ponemos pa dañar al enemigo/jugador
         if (collision.gameObject.CompareTag("Enemy"))
         {
             var enemyController = collision.gameObject.GetComponent<EnemyController>();
-            switch (enemyController)
-            {
-                case MeleeEnemyController melee:
-                    ObjectPool.Instance.Despawn(PoolTagsConstants.MELEE_ENEMY_POOL_TAG, melee.gameObject);
-                    break;
-                case RangedEnemyController ranged:
-                    ObjectPool.Instance.Despawn(PoolTagsConstants.RANGED_ENEMY_POOL_TAG, ranged.gameObject);
-                    break;
-                default:
-                    break;
-            }
+            ObjectPool.Instance.Despawn(enemyController.PoolTag, enemyController.Owner);
         }
 
-        ObjectPool.Instance.Despawn(PoolTagsConstants.BULLET_PLAYER_POOL_TAG, Owner);
-
-        if (bulletTime >= 0)
-        {
-            // Despawnear despues de "bulletTime" tiempo
-        }
+        ObjectPool.Instance.Despawn(PoolTag, Owner);
+      
     }
 
     void OnBecameInvisible()
     {
-        ObjectPool.Instance.Despawn(PoolTagsConstants.BULLET_PLAYER_POOL_TAG, Owner);
+        ObjectPool.Instance.Despawn(PoolTag, Owner);
     }
 
     public void OnInstanciate(Transform parent)

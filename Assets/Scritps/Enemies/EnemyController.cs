@@ -5,6 +5,9 @@ using UnityEngine;
 public abstract class EnemyController : MonoBehaviour, IPoolable
 {
     public GameObject Owner => gameObject;
+
+    public string PoolTag { get; set; }
+
     public string tagPlayer = "Player";
     public float speed = 2;
     protected GameObject player;
@@ -34,19 +37,19 @@ public abstract class EnemyController : MonoBehaviour, IPoolable
     }
 
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
         Move();
     }
 
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void OnCollisionEnter2D(Collision2D collision)
     {
         var target = collision.gameObject;
         if (target.CompareTag("Player"))
         {
             DamageTarget(target.GetComponent<PlayerScript>());
-            ObjectPool.Instance.Despawn("basic", Owner);
+            ObjectPool.Instance.Despawn(PoolTag, Owner);
         }
     }
 

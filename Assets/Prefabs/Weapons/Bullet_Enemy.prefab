@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7253056579173263084}
   - component: {fileID: 8169582819453159827}
   - component: {fileID: 8419706780274471067}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Bullet_Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -1
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.46600214, g: 0.8060051, b: 0.8301887, a: 1}
+  m_Color: {r: 0.59281254, g: 0, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -146,4 +146,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df415c94ceae76c4d859dbff6ab6dbc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletTime: -1
+  speed: 15
+  origen: {fileID: 0}
+  player: {fileID: 0}

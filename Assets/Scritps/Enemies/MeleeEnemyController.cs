@@ -15,14 +15,4 @@ public class MeleeEnemyController : EnemyController
         transform.position += direction.normalized * Time.deltaTime * speed;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            var player = collision.gameObject.GetComponent<PlayerScript>();
-            DamageTarget(player);
-            ObjectPool.Instance.Despawn(PoolTagsConstants.MELEE_ENEMY_POOL_TAG, Owner);
-        }
-    }
-
 }

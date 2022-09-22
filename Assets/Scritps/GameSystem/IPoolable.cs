@@ -3,6 +3,7 @@
 public interface IPoolable
 {
     GameObject Owner { get; }
+    string PoolTag { get; set; }
 
     void OnInstanciate(Transform parent);
 

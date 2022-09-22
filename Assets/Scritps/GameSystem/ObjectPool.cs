@@ -52,6 +52,7 @@ public class ObjectPool
         var totalObject = _inactivedObject[pool.Tag].Count + _activedObject[pool.Tag].Count;
         obj.name += $" - {pool.Tag}_{totalObject.ToString().PadLeft(5, '0')}";
         var poolable = obj.GetComponent<IPoolable>();
+        poolable.PoolTag = pool.Tag;
         poolable.OnInstanciate(pool.Parent);
         return obj;
     }
