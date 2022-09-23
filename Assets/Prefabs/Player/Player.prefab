@@ -100,7 +100,6 @@ GameObject:
   - component: {fileID: 1981385253958922281}
   - component: {fileID: 7587092319268457690}
   - component: {fileID: 4235502491740526885}
-  - component: {fileID: 640639066}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -240,7 +239,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapons:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 9ac265d5d51575f4abea340cb07b7307, type: 2}
+  - {fileID: 11400000, guid: 1b35c2de278344940bcf72d76ecdd761, type: 2}
   canShoot: 1
 --- !u!114 &7587092319268457690
 MonoBehaviour:
@@ -274,22 +274,4 @@ MonoBehaviour:
   minDamage: 5
   maxDamage: 7
   rageOnDamage: 30
-  rageOnHit: 5
   rageTime: 5
---- !u!114 &640639066
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2335648365232388112}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b94e09477a23b284d988c44a0df819ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerMouse: {fileID: 0}
-  playerScript: {fileID: 0}
-  fireRate: 0.2
-  bulletSpeed: 20
-  range: 3

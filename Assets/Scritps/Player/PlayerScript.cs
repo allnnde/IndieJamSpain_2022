@@ -13,7 +13,6 @@ public class PlayerScript : MonoBehaviour
     public float maxDamage = 7f;
     
     public float rageOnDamage = 30f;
-    public float rageOnHit = 5f;
     public float rageTime = 5f;
     private float rage = 0f;
     const int maxRage = 100;
@@ -51,6 +50,7 @@ public class PlayerScript : MonoBehaviour
     {
         var healthLeft = health - dmg;
         health = Mathf.Max(0, healthLeft);
+        AddRage(rageOnDamage);
 
         if (health == 0)
         {
@@ -78,6 +78,8 @@ public class PlayerScript : MonoBehaviour
 
     private void EnterRage()
     {
-
+        // Cositas chupis
+        Debug.Log("It's morbin time");
+        rage = 0f;
     }
 }

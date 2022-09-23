@@ -2,44 +2,51 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class WeaponObject : MonoBehaviour
+[CreateAssetMenu(fileName = "New Weapon", menuName = "Weapon")]
+public abstract class WeaponObject : ScriptableObject
 {
     [HideInInspector] public PlayerMouseTracking playerMouse;
     [HideInInspector] public PlayerScript playerScript;
 
     public float fireRate = 0.2f;
     public float bulletSpeed = 20f;
-    protected float damage;
+    [HideInInspector] public float damage;
+    [HideInInspector] public GameObject player;
 
-    float timeUntilShoot;
+    [HideInInspector] public float timeUntilShoot = 0f;
 
-    private void Awake()
+    void Awake()
     {
-        playerMouse = this.gameObject.GetComponent<PlayerMouseTracking>();
-        playerScript = this.gameObject.GetComponent<PlayerScript>();
+        timeUntilShoot = 0f;
     }
 
     // Start is called before the first frame update
-    void Start()
+
+    public void GetPlayerVariables()
     {
-        SetValues();
+        // Hacer que solo se pongan los valores si son null
+        player = GameObject.Find("Player");
+        playerMouse = player.GetComponent<PlayerMouseTracking>();
+        playerScript = player.GetComponent<PlayerScript>();
+        Debug.Log("player: " + player + " playerMouse: " + playerMouse + " playerScript: " + playerScript);
     }
-
-
     public void Shoot()
     {
+        GetPlayerVariables();
         timeUntilShoot = Time.time + fireRate;
         damage = playerScript.GetDamage();
         CreateBullets();
     }
 
-    public abstract void SetValues();
     public abstract void CreateBullets();
 
     public void TryShoot()
     {
-        if (Time.time > timeUntilShoot)
-        { 
+        //FIXIT: timeUntilShoot tiene un valor exageradamente alto sin contexto
+        Debug.Log("Time: " + Time.time + " Disparo: " + timeUntilShoot + " Comprobacion: " + (Time.time >= timeUntilShoot));
+        if (Time.time >= timeUntilShoot)
+        {
+            Debug.Log("Disparo2");
             Shoot();
         }
     }

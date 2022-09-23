@@ -17,10 +17,16 @@ public class PlayerWeaponSystem : MonoBehaviour
         playerScript = this.gameObject.GetComponent<PlayerScript>();
         var playerControls = playerScript.getPlayerControls();
         playerControls.Weapons.SwitchTo1.performed += (InputAction.CallbackContext context) => SwitchWeapon(0);
+        playerControls.Weapons.SwitchTo2.performed += (InputAction.CallbackContext context) => SwitchWeapon(1);
 
         //FIXME: WeaponObject[] no es una array?????
         // Esto tira error:
-        // weapons[0] = new WeaponSword();
+
+    }
+
+    private void Start()
+    {
+        
     }
 
     private void SwitchWeapon(int weapon)
@@ -29,6 +35,7 @@ public class PlayerWeaponSystem : MonoBehaviour
         if (weapons.Length >= weapon && weapons[weapon] != null)
         {
             selectedWeapon = weapon;
+            Debug.Log(weapons[selectedWeapon]);
         }
     }
 
@@ -42,6 +49,7 @@ public class PlayerWeaponSystem : MonoBehaviour
         {
             weapons[selectedWeapon].TryShoot();
         }
+        
     }
 
 
