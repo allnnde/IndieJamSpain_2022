@@ -32,7 +32,7 @@ public class PlayerBulletScript : MonoBehaviour, IPoolable
     {
         transform.parent = parent;
         gameObject.SetActive(false);
-        player = GetComponent<PlayerScript>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
     }
 
     public void OnSpawn(Vector3 position, Quaternion rotation)

@@ -5,47 +5,62 @@ using UnityEngine.InputSystem;
 
 public class PlayerWeaponSystem : MonoBehaviour
 {
-    public WeaponObject[] weapons;
 
     private PlayerScript playerScript;
     public bool canShoot = true;
-    private int selectedWeapon = 0;
+    private WeaponObject selectedWeapon;
 
+    private float shootCooldown = 0;
+    private float timeToShoot;
+
+    private Dictionary<WeaponType, WeaponObject> weaponObjects = new Dictionary<WeaponType, WeaponObject>();
+    private InputAction shootAction;
 
     private void Awake()
     {
-        playerScript = this.gameObject.GetComponent<PlayerScript>();
+        playerScript = gameObject.GetComponent<PlayerScript>();
         var playerControls = playerScript.getPlayerControls();
-        playerControls.Weapons.SwitchTo1.performed += (InputAction.CallbackContext context) => SwitchWeapon(0);
-        playerControls.Weapons.SwitchTo2.performed += (InputAction.CallbackContext context) => SwitchWeapon(1);
 
-    }
+        weaponObjects.Add(WeaponType.Sword, GetComponent<WeaponSword>());
+        weaponObjects.Add(WeaponType.Pistol, GetComponent<WeaponPistol>());
 
-    private void Start()
-    {
-        
-    }
-
-    private void SwitchWeapon(int weapon)
-    {
-        // FIXME: Si weapons[weapon] es null dice que está fuera de la boundary, tirando error
-        Debug.Log("Switching to weapon: " + weapon);
-        if (weapons.Length >= weapon && weapons[weapon] != null)
+        foreach (var weapon in weaponObjects.Values)
         {
-            selectedWeapon = weapon;
-            Debug.Log(weapons[selectedWeapon]);
+            weapon.enabled = false;
         }
+        playerControls.Weapons.SwitchTo1.performed += (InputAction.CallbackContext context) => SwitchWeapon(WeaponType.Sword);
+        playerControls.Weapons.SwitchTo2.performed += (InputAction.CallbackContext context) => SwitchWeapon(WeaponType.Pistol);
+
+        shootAction = playerScript.getPlayerControls().Player.Shoot;
+
+    }
+
+    private void SwitchWeapon(WeaponType weaponType)
+    {
+        if (!weaponObjects.TryGetValue(weaponType, out selectedWeapon))
+            return;
+
+        foreach (var weaponScrip in weaponObjects.Values)
+        {
+            weaponScrip.enabled = false;
+        }
+
+        selectedWeapon.enabled = true;
+        shootCooldown = selectedWeapon.fireRate;
+        timeToShoot = 0;
     }
 
 
-    private void FixedUpdate()
+    private void Update()
     {
-        var ShootAction = playerScript.getPlayerControls().Player.Shoot;
-        var isShooting = System.Convert.ToBoolean(ShootAction.ReadValue<float>());
+        var isShooting = System.Convert.ToBoolean(shootAction.ReadValue<float>());
 
-        if (canShoot && weapons[selectedWeapon] != null && isShooting)
+        timeToShoot += Time.deltaTime;
+
+        if (canShoot && selectedWeapon != null && isShooting && timeToShoot > shootCooldown)
         {
-            weapons[selectedWeapon].TryShoot();
+            selectedWeapon.Attack();
+            timeToShoot = 0;
         }
         
     }

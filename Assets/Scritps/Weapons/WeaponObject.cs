@@ -2,53 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class WeaponObject : ScriptableObject
+public abstract class WeaponObject : MonoBehaviour
 {
-    [HideInInspector] public PlayerMouseTracking playerMouse;
-    [HideInInspector] public PlayerScript playerScript;
+    protected PlayerMouseTracking playerMouse;
+    protected PlayerScript playerScript;
+    protected float damage;
 
-    public float fireRate = 0.2f;
+    public float fireRate = 1.5f;
     public float bulletSpeed = 20f;
-    [HideInInspector] public float damage;
-    [HideInInspector] public GameObject player;
 
-    [HideInInspector] public float timeUntilShoot = 0f;
 
-    void Awake()
+    private void Awake()
     {
-        timeUntilShoot = 0f;
-    }
-
-    // Start is called before the first frame update
-
-    public void GetPlayerVariables()
-    {
-        //TODO: Hacer que solo se pongan los valores si son null
-        player = GameObject.Find("Player");
-        playerMouse = player.GetComponent<PlayerMouseTracking>();
-        playerScript = player.GetComponent<PlayerScript>();
-        Debug.Log("player: " + player + " playerMouse: " + playerMouse + " playerScript: " + playerScript);
-    }
-    public void Shoot()
-    {
-        GetPlayerVariables();
-        timeUntilShoot = Time.time + fireRate;
+        playerMouse = GetComponent<PlayerMouseTracking>();
+        playerScript = GetComponent<PlayerScript>();
         damage = playerScript.GetDamage();
-        CreateBullets();
     }
 
-    public abstract void CreateBullets();
-
-    public void TryShoot()
+    public void Attack()
     {
-        //FIXIT: timeUntilShoot tiene un valor exageradamente alto sin contexto
-        Debug.Log("Time: " + Time.time + " Disparo: " + timeUntilShoot + " Comprobacion: " + (Time.time >= timeUntilShoot));
-        if (Time.time >= timeUntilShoot)
-        {
-            Debug.Log("Disparo2");
-            Shoot();
-        }
+        PreparateAttackMode();
     }
-
- 
+    public abstract void PreparateAttackMode();
 }
