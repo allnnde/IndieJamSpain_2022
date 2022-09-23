@@ -19,9 +19,6 @@ public class PlayerWeaponSystem : MonoBehaviour
         playerControls.Weapons.SwitchTo1.performed += (InputAction.CallbackContext context) => SwitchWeapon(0);
         playerControls.Weapons.SwitchTo2.performed += (InputAction.CallbackContext context) => SwitchWeapon(1);
 
-        //FIXME: WeaponObject[] no es una array?????
-        // Esto tira error:
-
     }
 
     private void Start()
@@ -31,6 +28,7 @@ public class PlayerWeaponSystem : MonoBehaviour
 
     private void SwitchWeapon(int weapon)
     {
+        // FIXME: Si weapons[weapon] es null dice que está fuera de la boundary, tirando error
         Debug.Log("Switching to weapon: " + weapon);
         if (weapons.Length >= weapon && weapons[weapon] != null)
         {

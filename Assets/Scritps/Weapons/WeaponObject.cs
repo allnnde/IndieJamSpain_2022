@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Weapon", menuName = "Weapon")]
 public abstract class WeaponObject : ScriptableObject
 {
     [HideInInspector] public PlayerMouseTracking playerMouse;
@@ -24,7 +23,7 @@ public abstract class WeaponObject : ScriptableObject
 
     public void GetPlayerVariables()
     {
-        // Hacer que solo se pongan los valores si son null
+        //TODO: Hacer que solo se pongan los valores si son null
         player = GameObject.Find("Player");
         playerMouse = player.GetComponent<PlayerMouseTracking>();
         playerScript = player.GetComponent<PlayerScript>();

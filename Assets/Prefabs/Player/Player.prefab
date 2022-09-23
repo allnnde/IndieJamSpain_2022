@@ -241,6 +241,7 @@ MonoBehaviour:
   weapons:
   - {fileID: 11400000, guid: 9ac265d5d51575f4abea340cb07b7307, type: 2}
   - {fileID: 11400000, guid: 1b35c2de278344940bcf72d76ecdd761, type: 2}
+  - {fileID: 11400000, guid: 79a932bc3386d5c4fa584e1dfaea6a24, type: 2}
   canShoot: 1
 --- !u!114 &7587092319268457690
 MonoBehaviour:
