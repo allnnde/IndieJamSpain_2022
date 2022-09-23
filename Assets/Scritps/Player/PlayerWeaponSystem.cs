@@ -23,6 +23,7 @@ public class PlayerWeaponSystem : MonoBehaviour
 
         weaponObjects.Add(WeaponType.Sword, GetComponent<WeaponSword>());
         weaponObjects.Add(WeaponType.Pistol, GetComponent<WeaponPistol>());
+        weaponObjects.Add(WeaponType.Shotgun, GetComponent<WeaponShotgun>());
 
         foreach (var weapon in weaponObjects.Values)
         {
@@ -30,6 +31,7 @@ public class PlayerWeaponSystem : MonoBehaviour
         }
         playerControls.Weapons.SwitchTo1.performed += (InputAction.CallbackContext context) => SwitchWeapon(WeaponType.Sword);
         playerControls.Weapons.SwitchTo2.performed += (InputAction.CallbackContext context) => SwitchWeapon(WeaponType.Pistol);
+        playerControls.Weapons.SwitchTo3.performed += (InputAction.CallbackContext context) => SwitchWeapon(WeaponType.Shotgun);
 
         shootAction = playerScript.getPlayerControls().Player.Shoot;
 
@@ -47,6 +49,7 @@ public class PlayerWeaponSystem : MonoBehaviour
 
         selectedWeapon.enabled = true;
         shootCooldown = selectedWeapon.fireRate;
+        
         timeToShoot = 0;
     }
 
@@ -55,7 +58,7 @@ public class PlayerWeaponSystem : MonoBehaviour
     {
         var isShooting = System.Convert.ToBoolean(shootAction.ReadValue<float>());
 
-        timeToShoot += Time.deltaTime;
+        timeToShoot += (playerScript.IsInRage()) ? Time.deltaTime * 2 : Time.deltaTime;
 
         if (canShoot && selectedWeapon != null && isShooting && timeToShoot > shootCooldown)
         {

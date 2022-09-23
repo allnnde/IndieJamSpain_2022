@@ -7,7 +7,6 @@ public class WeaponPistol : WeaponObject
     public override void PreparateAttackMode()
     {
 
-        Debug.Log("fireRate " + fireRate);
         GameObject bullet = ObjectPool.Instance.Spawn(PoolTagsConstants.BULLET_PLAYER_POOL_TAG, transform.position, playerMouse.QuaternionTowardsMouse());
         // TODO: Implementar el daño
         Rigidbody2D bulletRB = bullet.GetComponent<Rigidbody2D>();

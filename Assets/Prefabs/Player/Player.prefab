@@ -309,9 +309,12 @@ MonoBehaviour:
   health: 0
   maxHealth: 10
   moveSpeed: 5
+  dashSpeed: 400
   pickupRange: 30
   minDamage: 5
   maxDamage: 7
+  dashCooldown: 0.5
+  canDash: 1
   rageOnDamage: 30
   rageTime: 5
 --- !u!114 &1375200135
@@ -343,7 +346,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireRate: 1.5
   bulletSpeed: 20
-  spread: 5
+  spread: 20
   bullets: 4
 --- !u!114 &1375200137
 MonoBehaviour:
@@ -358,7 +361,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireRate: 0.5
-  bulletSpeed: 20
+  bulletSpeed: 60
 --- !u!1001 &69658854
 PrefabInstance:
   m_ObjectHideFlags: 0

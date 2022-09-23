@@ -15,7 +15,7 @@ public class PlayerBulletScript : MonoBehaviour, IPoolable
         {
             var enemyController = collision.gameObject.GetComponent<EnemyController>();
             ObjectPool.Instance.Despawn(enemyController.PoolTag, enemyController.Owner);
-            player.AddRage(20f);
+            player.AddRage(5f);
 
         }
 
