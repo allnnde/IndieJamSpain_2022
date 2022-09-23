@@ -40,12 +40,6 @@ public class PlayerScript : MonoBehaviour
     private void OnDisable() {
         playerControls.Disable();
     }
-
-    public float GetDamage(bool randomized = true)
-    {
-        return (randomized) ? (Mathf.Round(Random.Range(minDamage, maxDamage) * 10.0f) * 0.1f) : maxDamage;
-    }
-
     public void TakeDamage(float dmg)
     {
         var healthLeft = health - dmg;

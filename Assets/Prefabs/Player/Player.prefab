@@ -326,6 +326,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b94e09477a23b284d988c44a0df819ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 10
   fireRate: 1.5
   bulletSpeed: 20
   range: 3
@@ -341,6 +342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd8df828b228c20479e96398c4eec832, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 5
   fireRate: 1.5
   bulletSpeed: 20
   spread: 5
@@ -357,6 +359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c3e97f59b91a744cb96f9c4e4d6fdc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 3
   fireRate: 0.5
   bulletSpeed: 20
 --- !u!1001 &69658854
@@ -368,7 +371,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1711183396457539228, guid: 5995c8bfd6f3c1d43b164979494b2750, type: 3}
       propertyPath: counter
-      value: 10
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1711183396457539228, guid: 5995c8bfd6f3c1d43b164979494b2750, type: 3}
       propertyPath: tagpool
@@ -442,7 +445,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1711183396457539228, guid: 5995c8bfd6f3c1d43b164979494b2750, type: 3}
       propertyPath: counter
-      value: 10
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1711183396457539228, guid: 5995c8bfd6f3c1d43b164979494b2750, type: 3}
       propertyPath: tagpool
@@ -516,7 +519,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1711183396457539228, guid: 5995c8bfd6f3c1d43b164979494b2750, type: 3}
       propertyPath: counter
-      value: 10
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1711183396457539228, guid: 5995c8bfd6f3c1d43b164979494b2750, type: 3}
       propertyPath: tagpool
@@ -590,7 +593,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1711183396457539228, guid: 5995c8bfd6f3c1d43b164979494b2750, type: 3}
       propertyPath: counter
-      value: 10
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1711183396457539228, guid: 5995c8bfd6f3c1d43b164979494b2750, type: 3}
       propertyPath: tagpool
@@ -664,7 +667,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1711183396457539228, guid: 5995c8bfd6f3c1d43b164979494b2750, type: 3}
       propertyPath: counter
-      value: 10
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1711183396457539228, guid: 5995c8bfd6f3c1d43b164979494b2750, type: 3}
       propertyPath: tagpool
@@ -738,7 +741,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1711183396457539228, guid: 5995c8bfd6f3c1d43b164979494b2750, type: 3}
       propertyPath: counter
-      value: 10
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1711183396457539228, guid: 5995c8bfd6f3c1d43b164979494b2750, type: 3}
       propertyPath: tagpool
@@ -812,7 +815,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1711183396457539228, guid: 5995c8bfd6f3c1d43b164979494b2750, type: 3}
       propertyPath: counter
-      value: 10
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1711183396457539228, guid: 5995c8bfd6f3c1d43b164979494b2750, type: 3}
       propertyPath: tagpool

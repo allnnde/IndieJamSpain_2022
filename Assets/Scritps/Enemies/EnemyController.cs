@@ -5,6 +5,8 @@ using UnityEngine;
 public abstract class EnemyController : MonoBehaviour, IPoolable
 {
     public GameObject Owner => gameObject;
+    public float MaxLife => 20;
+    private float actualLife;
 
     public string PoolTag { get; set; }
 
@@ -15,8 +17,8 @@ public abstract class EnemyController : MonoBehaviour, IPoolable
     public void OnInstanciate(Transform parent)
     {
         transform.parent = parent;
-
         gameObject.SetActive(false);
+        actualLife = MaxLife;
     }
 
     public void OnSpawn(Vector3 position, Quaternion rotation)
@@ -55,4 +57,13 @@ public abstract class EnemyController : MonoBehaviour, IPoolable
 
     public abstract void DamageTarget(PlayerScript player);
     public abstract void Move();
+
+    public void TakeDamage(float damage)
+    {
+        actualLife -= damage;
+        if(actualLife <= 0)
+        {
+            ObjectPool.Instance.Despawn(PoolTag, Owner);
+        }
+    }
 }

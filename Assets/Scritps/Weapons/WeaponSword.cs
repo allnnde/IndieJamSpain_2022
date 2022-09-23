@@ -12,7 +12,6 @@ public class WeaponSword : WeaponObject
         Gizmos.DrawWireSphere(transform.position, range);
     }
 
-
     // Update is called once per frame
     public override void PreparateAttackMode()
     {
@@ -23,8 +22,8 @@ public class WeaponSword : WeaponObject
             if (item.collider.gameObject.CompareTag("Enemy"))
             {
                 var enemyController = item.collider.gameObject.GetComponent<EnemyController>();
-                ObjectPool.Instance.Despawn(enemyController.PoolTag, enemyController.Owner);
-                GameObject.Find("Player").GetComponent<PlayerScript>().AddRage(5f);
+                enemyController.TakeDamage(damage);
+                playerScript.AddRage(5f);
             }
         }
 

@@ -6,7 +6,7 @@ public abstract class WeaponObject : MonoBehaviour
 {
     protected PlayerMouseTracking playerMouse;
     protected PlayerScript playerScript;
-    protected float damage;
+    public float damage = 5;
 
     public float fireRate = 1.5f;
     public float bulletSpeed = 20f;
@@ -16,7 +16,6 @@ public abstract class WeaponObject : MonoBehaviour
     {
         playerMouse = GetComponent<PlayerMouseTracking>();
         playerScript = GetComponent<PlayerScript>();
-        damage = playerScript.GetDamage();
     }
 
     public void Attack()

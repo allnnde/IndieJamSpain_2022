@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerBulletScript : MonoBehaviour, IPoolable
 {
     private PlayerScript player;
+    public float Damage { get; set; }
 
     public GameObject Owner => gameObject;
     public string PoolTag { get; set; }
@@ -14,7 +15,7 @@ public class PlayerBulletScript : MonoBehaviour, IPoolable
         if (collision.gameObject.CompareTag("Enemy"))
         {
             var enemyController = collision.gameObject.GetComponent<EnemyController>();
-            ObjectPool.Instance.Despawn(enemyController.PoolTag, enemyController.Owner);
+            enemyController.TakeDamage(Damage);
             player.AddRage(20f);
 
         }
