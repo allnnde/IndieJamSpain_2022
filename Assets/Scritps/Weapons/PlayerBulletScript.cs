@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerBulletScript : MonoBehaviour, IPoolable
 {
+    private PlayerScript player;
+
     public GameObject Owner => gameObject;
     public string PoolTag { get; set; }
     void OnTriggerEnter2D(Collider2D collision)
@@ -13,7 +15,8 @@ public class PlayerBulletScript : MonoBehaviour, IPoolable
         {
             var enemyController = collision.gameObject.GetComponent<EnemyController>();
             ObjectPool.Instance.Despawn(enemyController.PoolTag, enemyController.Owner);
-            GameObject.Find("Player").GetComponent<PlayerScript>().AddRage(20f);
+            player.AddRage(20f);
+
         }
 
         ObjectPool.Instance.Despawn(PoolTag, Owner);
@@ -29,6 +32,7 @@ public class PlayerBulletScript : MonoBehaviour, IPoolable
     {
         transform.parent = parent;
         gameObject.SetActive(false);
+        player = GetComponent<PlayerScript>();
     }
 
     public void OnSpawn(Vector3 position, Quaternion rotation)

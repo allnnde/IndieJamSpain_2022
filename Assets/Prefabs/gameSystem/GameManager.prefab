@@ -44,6 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f55f56232fd61484494ba1eba5e50622, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyBasicController: {fileID: 3024672621678855272, guid: d34c4c8f7b9a5f3459020ea828e0bfcc, type: 3}
-  bulletScript: {fileID: 4500343415430985465, guid: 9a83a788dbc1fab44982f86b133f50af, type: 3}
+  meleeEnemyController: {fileID: 3024672621678855272, guid: d34c4c8f7b9a5f3459020ea828e0bfcc, type: 3}
+  rangedEnemyController: {fileID: 3024672621678855272, guid: 59fc938534c4136439c54439f52d463a, type: 3}
+  playerBullet: {fileID: 4500343415430985465, guid: 9a83a788dbc1fab44982f86b133f50af, type: 3}
+  enemyBullet: {fileID: 8419706780274471067, guid: 2e4fd94daadf671449e274d3939bc7e0, type: 3}
   enemiesSpawners: []
