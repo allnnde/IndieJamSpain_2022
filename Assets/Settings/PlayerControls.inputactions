@@ -92,6 +92,74 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Weapons",
+            "id": "b3201bc4-2ea7-43ad-98bd-af95d180e2c1",
+            "actions": [
+                {
+                    "name": "SwitchTo1",
+                    "type": "Button",
+                    "id": "96641d80-8b4f-4505-aa6a-4439a87a938b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SwitchTo2",
+                    "type": "Button",
+                    "id": "50d0b452-0e91-491f-87c3-b5a171c2e308",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SwitchTo3",
+                    "type": "Button",
+                    "id": "1323e492-c325-4f61-be30-85e9805bfc99",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "96063ab2-dbe3-4b05-a2d9-a1d364d6f511",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwitchTo1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "183cdca1-8973-4c68-aa52-ea1670704391",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwitchTo2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "33040627-c419-46d3-a796-1ea9471817bd",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwitchTo3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

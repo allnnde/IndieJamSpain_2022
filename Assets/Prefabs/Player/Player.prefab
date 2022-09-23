@@ -224,7 +224,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2efa3d67e0789c4a88011b6326b0b1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
   rigidBody: {fileID: 2335648365232388115}
   canMove: 1
 --- !u!114 &1981385253958922281
@@ -239,9 +238,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb0c5deed7907344d8e5cbd6df0a7143, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 2209206195098279356, guid: 9a83a788dbc1fab44982f86b133f50af, type: 3}
-  fireRate: 0.2
-  bulletSpeed: 20
+  weapons:
+  - {fileID: 11400000, guid: 9ac265d5d51575f4abea340cb07b7307, type: 2}
+  - {fileID: 11400000, guid: 1b35c2de278344940bcf72d76ecdd761, type: 2}
+  canShoot: 1
 --- !u!114 &7587092319268457690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,3 +267,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bef4932c59c86fb46a561dfa40ba0c8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 0
+  maxHealth: 10
+  moveSpeed: 5
+  pickupRange: 30
+  minDamage: 5
+  maxDamage: 7
+  rageOnDamage: 30
+  rageTime: 5

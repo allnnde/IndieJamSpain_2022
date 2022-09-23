@@ -17,15 +17,6 @@ public class PlayerMovement : MonoBehaviour
         playerScript = this.gameObject.GetComponent<PlayerScript>();
     }
 
-    /*
-    private void OnEnable() {
-        playerControls.Enable();
-    }
-
-    private void OnDisable() {
-        playerControls.Disable();
-    }
-    */
     
     // Calls 1 time per frame
     void Update()

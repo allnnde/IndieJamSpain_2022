@@ -5,60 +5,52 @@ using UnityEngine.InputSystem;
 
 public class PlayerWeaponSystem : MonoBehaviour
 {
+    public WeaponObject[] weapons;
 
-
-    private PlayerMouseTracking playerMouse;
     private PlayerScript playerScript;
+    public bool canShoot = true;
+    private int selectedWeapon = 0;
 
-    public float fireRate = 0.2f;
-    private bool canShoot = true;
-    public float bulletSpeed = 20f;
-
-    float timeUntilShoot;
 
     private void Awake()
     {
-        playerMouse = this.gameObject.GetComponent<PlayerMouseTracking>();
         playerScript = this.gameObject.GetComponent<PlayerScript>();
+        var playerControls = playerScript.getPlayerControls();
+        playerControls.Weapons.SwitchTo1.performed += (InputAction.CallbackContext context) => SwitchWeapon(0);
+        playerControls.Weapons.SwitchTo2.performed += (InputAction.CallbackContext context) => SwitchWeapon(1);
+
+        //FIXME: WeaponObject[] no es una array?????
+        // Esto tira error:
+
     }
 
-
-    public void Shoot()
-    {
-        timeUntilShoot = Time.time + fireRate;
-
-        GameObject bullet = ObjectPool.Instance.Spawn(PoolTagsConstants.BULLET_PLAYER_POOL_TAG, transform.position, playerMouse.QuaternionTowardsMouse());
-        
-        Rigidbody2D bulletRB = bullet.GetComponent<Rigidbody2D>();
-        bulletRB.AddForce(bullet.transform.up * bulletSpeed, ForceMode2D.Impulse);
-    }
-
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         
     }
 
-    private bool WillShoot()
+    private void SwitchWeapon(int weapon)
+    {
+        Debug.Log("Switching to weapon: " + weapon);
+        if (weapons.Length >= weapon && weapons[weapon] != null)
+        {
+            selectedWeapon = weapon;
+            Debug.Log(weapons[selectedWeapon]);
+        }
+    }
+
+
+    private void FixedUpdate()
     {
         var ShootAction = playerScript.getPlayerControls().Player.Shoot;
         var isShooting = System.Convert.ToBoolean(ShootAction.ReadValue<float>());
-        return (isShooting && canShoot && (Time.time > timeUntilShoot));
-    }
 
-    // Calls 50 times a second, better to use with physics
-    void FixedUpdate()
-    {
-        if(WillShoot())
+        if (canShoot && weapons[selectedWeapon] != null && isShooting)
         {
-            Shoot();
+            weapons[selectedWeapon].TryShoot();
         }
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
- 
-    }
+
 }

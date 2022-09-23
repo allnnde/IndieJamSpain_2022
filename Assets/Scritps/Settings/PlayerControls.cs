@@ -114,6 +114,74 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Weapons"",
+            ""id"": ""b3201bc4-2ea7-43ad-98bd-af95d180e2c1"",
+            ""actions"": [
+                {
+                    ""name"": ""SwitchTo1"",
+                    ""type"": ""Button"",
+                    ""id"": ""96641d80-8b4f-4505-aa6a-4439a87a938b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwitchTo2"",
+                    ""type"": ""Button"",
+                    ""id"": ""50d0b452-0e91-491f-87c3-b5a171c2e308"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwitchTo3"",
+                    ""type"": ""Button"",
+                    ""id"": ""1323e492-c325-4f61-be30-85e9805bfc99"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""96063ab2-dbe3-4b05-a2d9-a1d364d6f511"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchTo1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""183cdca1-8973-4c68-aa52-ea1670704391"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchTo2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""33040627-c419-46d3-a796-1ea9471817bd"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchTo3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -122,6 +190,11 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
+        // Weapons
+        m_Weapons = asset.FindActionMap("Weapons", throwIfNotFound: true);
+        m_Weapons_SwitchTo1 = m_Weapons.FindAction("SwitchTo1", throwIfNotFound: true);
+        m_Weapons_SwitchTo2 = m_Weapons.FindAction("SwitchTo2", throwIfNotFound: true);
+        m_Weapons_SwitchTo3 = m_Weapons.FindAction("SwitchTo3", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -218,9 +291,64 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+
+    // Weapons
+    private readonly InputActionMap m_Weapons;
+    private IWeaponsActions m_WeaponsActionsCallbackInterface;
+    private readonly InputAction m_Weapons_SwitchTo1;
+    private readonly InputAction m_Weapons_SwitchTo2;
+    private readonly InputAction m_Weapons_SwitchTo3;
+    public struct WeaponsActions
+    {
+        private @PlayerControls m_Wrapper;
+        public WeaponsActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @SwitchTo1 => m_Wrapper.m_Weapons_SwitchTo1;
+        public InputAction @SwitchTo2 => m_Wrapper.m_Weapons_SwitchTo2;
+        public InputAction @SwitchTo3 => m_Wrapper.m_Weapons_SwitchTo3;
+        public InputActionMap Get() { return m_Wrapper.m_Weapons; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(WeaponsActions set) { return set.Get(); }
+        public void SetCallbacks(IWeaponsActions instance)
+        {
+            if (m_Wrapper.m_WeaponsActionsCallbackInterface != null)
+            {
+                @SwitchTo1.started -= m_Wrapper.m_WeaponsActionsCallbackInterface.OnSwitchTo1;
+                @SwitchTo1.performed -= m_Wrapper.m_WeaponsActionsCallbackInterface.OnSwitchTo1;
+                @SwitchTo1.canceled -= m_Wrapper.m_WeaponsActionsCallbackInterface.OnSwitchTo1;
+                @SwitchTo2.started -= m_Wrapper.m_WeaponsActionsCallbackInterface.OnSwitchTo2;
+                @SwitchTo2.performed -= m_Wrapper.m_WeaponsActionsCallbackInterface.OnSwitchTo2;
+                @SwitchTo2.canceled -= m_Wrapper.m_WeaponsActionsCallbackInterface.OnSwitchTo2;
+                @SwitchTo3.started -= m_Wrapper.m_WeaponsActionsCallbackInterface.OnSwitchTo3;
+                @SwitchTo3.performed -= m_Wrapper.m_WeaponsActionsCallbackInterface.OnSwitchTo3;
+                @SwitchTo3.canceled -= m_Wrapper.m_WeaponsActionsCallbackInterface.OnSwitchTo3;
+            }
+            m_Wrapper.m_WeaponsActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @SwitchTo1.started += instance.OnSwitchTo1;
+                @SwitchTo1.performed += instance.OnSwitchTo1;
+                @SwitchTo1.canceled += instance.OnSwitchTo1;
+                @SwitchTo2.started += instance.OnSwitchTo2;
+                @SwitchTo2.performed += instance.OnSwitchTo2;
+                @SwitchTo2.canceled += instance.OnSwitchTo2;
+                @SwitchTo3.started += instance.OnSwitchTo3;
+                @SwitchTo3.performed += instance.OnSwitchTo3;
+                @SwitchTo3.canceled += instance.OnSwitchTo3;
+            }
+        }
+    }
+    public WeaponsActions @Weapons => new WeaponsActions(this);
     public interface IPlayerActions
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
+    }
+    public interface IWeaponsActions
+    {
+        void OnSwitchTo1(InputAction.CallbackContext context);
+        void OnSwitchTo2(InputAction.CallbackContext context);
+        void OnSwitchTo3(InputAction.CallbackContext context);
     }
 }
