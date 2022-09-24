@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public EnemyController rangedEnemyController;
     public PlayerBulletScript playerBullet;
     public EnemyBulletScript enemyBullet;
+    public RageBulletScript rageBullet;
 
     public float minuteForWave = 3;
 
@@ -27,6 +28,7 @@ public class GameManager : MonoBehaviour
         ObjectPool.Instance.Pools.Add(new Pool { Item = rangedEnemyController, Parent = transform.transform, Size = 20, Tag = PoolTagsConstants.RANGED_ENEMY_POOL_TAG });
         ObjectPool.Instance.Pools.Add(new Pool { Item = playerBullet, Parent = transform.transform, Size = 50, Tag = PoolTagsConstants.BULLET_PLAYER_POOL_TAG });
         ObjectPool.Instance.Pools.Add(new Pool { Item = enemyBullet, Parent = transform.transform, Size = 50, Tag = PoolTagsConstants.BULLET_ENEMY_POOL_TAG });
+        ObjectPool.Instance.Pools.Add(new Pool { Item = rageBullet, Parent = transform.transform, Size = 20, Tag = PoolTagsConstants.BULLET_RAGE_POOL_TAG });
         ObjectPool.Instance.Start();
 
         enemiesSpawners = FindObjectsOfType<EnemySpawner>(false);

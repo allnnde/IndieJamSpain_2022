@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,6 +18,7 @@ public class PlayerScript : MonoBehaviour
     private float timeToDash = 0f;
     private float timeWithoutRage = 0f;
 
+    private List<GameObject> bulletList = new List<GameObject>();
     private void Awake()
     {
         stats = GetComponent<PlayerStats>();
@@ -25,13 +28,13 @@ public class PlayerScript : MonoBehaviour
         playerMovement = gameObject.GetComponent<PlayerMovement>();
 
         health = (stats.startingHealth > 0) ? stats.startingHealth : stats.maxHealth;
-        
+
     }
 
-    private void CheckDash(InputAction.CallbackContext context) 
+    private void CheckDash(InputAction.CallbackContext context)
     {
         var dashCooldown = stats.dashCooldown;
-        
+
         if (canDash && timeToDash > dashCooldown)
         {
             StartCoroutine(playerMovement.Dash(stats.dashForce, playerControls.Player.Movement.ReadValue<Vector2>()));
@@ -82,17 +85,48 @@ public class PlayerScript : MonoBehaviour
         if (rage >= maxRage)
         {
             //TODO ver si esto es necessario como coroutine, sino ver de trasmormar en async o timer simple
-            StartCoroutine(EnterRage());
+            EnterRage();
         }
     }
 
     //TODO ver si esto es necessario como coroutine, sino ver de trasmormar en async o timer simple
-    private IEnumerator EnterRage()
+    private async Task EnterRage()
     {
         inRage = true;
-        Debug.Log("It's morbin time");
-        yield return new WaitForSeconds(stats.rageTime);
+        gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+        CreateRageBullets();
+        await Task.Delay(stats.rageTime * 1000);
+        ApplyRageFinal();
+    }
+
+    private void CreateRageBullets() 
+    {
+        var bullets = 1;
+        var diffAngle = 360 / bullets;
+        for (int i = 1; i <= bullets; i++)
+        {
+            //TODO elegir bien posicion de las balas
+            var bullet = ObjectPool.Instance.Spawn(PoolTagsConstants.BULLET_RAGE_POOL_TAG, transform.position + new Vector3(0, 2, 0), Quaternion.identity);
+            //bullet.transform.parent = transform;
+            bullet.GetComponent<RageBulletScript>().Damage = stats.maxDamage * 2;
+            bullet.transform.RotateAround(gameObject.transform.position, new Vector3(0, 0, 1), (diffAngle * i) * Time.deltaTime);
+            bulletList.Add(bullet);
+        }
+
+    }
+
+    private void ApplyRageFinal()
+    {
         inRage = false;
+        
+        foreach(var bullet in bulletList)
+        {
+            ObjectPool.Instance.Despawn(PoolTagsConstants.BULLET_RAGE_POOL_TAG, bullet);
+        }
+
+        bulletList.Clear();
+        
+        gameObject.GetComponent<SpriteRenderer>().color = Color.white;
         rage = 0f;
     }
 
@@ -118,7 +152,7 @@ public class PlayerScript : MonoBehaviour
         rage = Mathf.Max(0, rageLeft);
         if(rage == 0)
         {
-            //ApplyRageFinal();
+            ApplyRageFinal();
         }
 
     }

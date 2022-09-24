@@ -23,7 +23,7 @@ public class PlayerStats : MonoBehaviour
     [Header("Rage Settings")]
     public float limitTimeRage = 10f;
     public float rageOnDamage = 30f;
-    public float rageTime = 5f;
+    public int rageTime = 5;
     public float decreaseRate = 0.05f;
 
     [Header("Other Stats")]
@@ -31,5 +31,10 @@ public class PlayerStats : MonoBehaviour
 
     [HideInInspector] public bool inRage = false;
     [HideInInspector] public bool canDash = true;
+
+    public float GetRandomDamage()
+    {
+        return (Mathf.Round(Random.Range(minDamage, maxDamage) * 10.0f) * 0.1f);
+    }
 
 }

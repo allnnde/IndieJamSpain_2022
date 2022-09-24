@@ -613,14 +613,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1052556690526546532, guid: ac03bbbaf9158414899d6fed507cd241, type: 3}
-      propertyPath: meleeEnemyController
-      value: 
-      objectReference: {fileID: 3024672621678855272, guid: d34c4c8f7b9a5f3459020ea828e0bfcc, type: 3}
-    - target: {fileID: 1052556690526546532, guid: ac03bbbaf9158414899d6fed507cd241, type: 3}
-      propertyPath: rangedEnemyController
-      value: 
-      objectReference: {fileID: 3024672621678855272, guid: 59fc938534c4136439c54439f52d463a, type: 3}
     - target: {fileID: 1052556690526546533, guid: ac03bbbaf9158414899d6fed507cd241, type: 3}
       propertyPath: m_RootOrder
       value: 2
