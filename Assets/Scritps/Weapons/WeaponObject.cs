@@ -6,7 +6,7 @@ public abstract class WeaponObject : MonoBehaviour
 {
     protected PlayerMouseTracking playerMouse;
     protected PlayerScript playerScript;
-    public float Damage = 5;
+    public float damage = 5;
     public float originalDamage = 5;
 
     public float fireRate = 1.5f;
@@ -17,12 +17,12 @@ public abstract class WeaponObject : MonoBehaviour
     {
         playerMouse = GetComponent<PlayerMouseTracking>();
         playerScript = GetComponent<PlayerScript>();
-        originalDamage = Damage;
+        originalDamage = damage;
     }
 
     public void Attack()
     {
-        Damage = playerScript.IsInRage() ? originalDamage * 2 : originalDamage;
+        damage = playerScript.inRage ? originalDamage * 2 : originalDamage;
         PreparateAttackMode();
     }
     public abstract void PreparateAttackMode();

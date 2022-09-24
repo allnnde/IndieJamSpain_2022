@@ -8,7 +8,7 @@ public class PlayerMouseTracking : MonoBehaviour
     // Start is called before the first frame update
 
     public GameObject mouseSprite = null;
-    private bool canDetect = true;
+    public bool canDetect = true;
     void Start()
     {
         Cursor.visible = false;
@@ -50,6 +50,9 @@ public class PlayerMouseTracking : MonoBehaviour
     
     private void SetMouseSpritePosition()
     {
+        if (mouseSprite == null)
+            return;
+
         Vector3 mousePosition = GetMousePosition();
         Vector3 newSpritePosition = new Vector3(mousePosition.x, mousePosition.y, 0);
         mouseSprite.transform.position = newSpritePosition;
@@ -60,11 +63,7 @@ public class PlayerMouseTracking : MonoBehaviour
     {
         if (canDetect)
         {
-            //TestGetAngles();
-            if(mouseSprite != null)
-            {
-                SetMouseSpritePosition();
-            }
+            SetMouseSpritePosition();
         }
     }
 }

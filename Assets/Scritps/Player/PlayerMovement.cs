@@ -5,11 +5,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private PlayerControls playerControls;
-
-    public Rigidbody2D rigidBody;
+    private Rigidbody2D rigidBody;
     private PlayerScript playerScript;
-    public bool canMove = true;
+    [HideInInspector] public bool canMove = true;
 
     private bool isDashing = false;
 
@@ -17,12 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         playerScript = this.gameObject.GetComponent<PlayerScript>();
-    }
-
-
-    // Calls 1 time per frame
-    void Update()
-    {
+        rigidBody = this.gameObject.GetComponent<Rigidbody2D>();
     }
 
     // Calls 50 times a second, better to use with physics
@@ -36,8 +29,9 @@ public class PlayerMovement : MonoBehaviour
     {
         var playerActions = playerScript.getPlayerControls().Player;
         var movement = playerActions.Movement.ReadValue<Vector2>();
-        var speed = (playerScript.IsInRage()) ? playerScript.moveSpeed * 2 : playerScript.moveSpeed;
+        var speed = (playerScript.inRage) ? playerScript.stats.moveSpeed * 2 : playerScript.stats.moveSpeed;
         var newPosition = rigidBody.position + movement * speed * Time.fixedDeltaTime;
+
         rigidBody.MovePosition(newPosition);
     }
 

@@ -4,49 +4,37 @@ using UnityEngine.InputSystem;
 
 public class PlayerScript : MonoBehaviour
 {
+    [HideInInspector] public PlayerStats stats;
 
-    //TODO ver de sacar a una clase/s
     [HideInInspector] public float health;
-    public float maxHealth = 10f;
-    public float moveSpeed = 5f;
-    public float dashSpeed = 400f;
-    public float pickupRange = 30f;
-    public float minDamage = 5f;
-    public float maxDamage = 7f;
-    public float dashCooldown = 1f;
-    public bool canDash = true;
-    public float limitTimeRage = 10f;
-    
-    public float rageOnDamage = 30f;
-    public float rageTime = 5f;
-    private float rage = 0f;
-    const int maxRage = 100;
     private PlayerControls playerControls;
     private PlayerMovement playerMovement;
-    private PlayerMouseTracking playerMouseTracking;
-
-    private bool inRage = false;
+    private float rage = 0f;
+    const int maxRage = 100;
+    [HideInInspector] public bool inRage = false;
+    [HideInInspector] public bool canDash = true;
     private float timeToDash = 0f;
     private float timeWithoutRage = 0f;
 
     private void Awake()
     {
+        stats = GetComponent<PlayerStats>();
         playerControls = new PlayerControls();
         playerControls.Enable();
         playerControls.Player.Dash.performed += CheckDash;
         playerMovement = gameObject.GetComponent<PlayerMovement>();
-        playerMouseTracking = gameObject.GetComponent<PlayerMouseTracking>();
 
-        health = maxHealth;
+        health = (stats.startingHealth > 0) ? stats.startingHealth : stats.maxHealth;
         
     }
 
     private void CheckDash(InputAction.CallbackContext context) 
     {
-        Debug.Log("timeToDash: " + timeToDash + " dashCooldown: " + dashCooldown);
+        var dashCooldown = stats.dashCooldown;
+        
         if (canDash && timeToDash > dashCooldown)
         {
-            StartCoroutine(playerMovement.Dash(dashSpeed, playerControls.Player.Movement.ReadValue<Vector2>()));
+            StartCoroutine(playerMovement.Dash(stats.dashForce, playerControls.Player.Movement.ReadValue<Vector2>()));
             timeToDash = 0f;
         }
     }
@@ -68,7 +56,7 @@ public class PlayerScript : MonoBehaviour
     {
         var healthLeft = health - dmg;
         health = Mathf.Max(0, healthLeft);
-        AddRage(rageOnDamage);
+        AddRage(stats.rageOnDamage);
 
         if (health == 0)
         {
@@ -103,16 +91,11 @@ public class PlayerScript : MonoBehaviour
     {
         inRage = true;
         Debug.Log("It's morbin time");
-        yield return new WaitForSeconds(rageTime);
+        yield return new WaitForSeconds(stats.rageTime);
         inRage = false;
         rage = 0f;
     }
 
-    //TODO no es necesario si ya tenemos la propiedad
-    public bool IsInRage()
-    {
-        return inRage;
-    }
     private void Update()
     {
 
@@ -123,7 +106,7 @@ public class PlayerScript : MonoBehaviour
             timeWithoutRage += Time.deltaTime;
         }
 
-        if (timeWithoutRage > limitTimeRage)
+        if (timeWithoutRage > stats.limitTimeRage)
         {
             DecreaseRage();
         }
@@ -131,10 +114,12 @@ public class PlayerScript : MonoBehaviour
     }
     private void DecreaseRage()
     {
-        //TODO: Parametrizar
-        var decreaseRate = 0.05f;
-        var rageLeft = rage - decreaseRate;
+        var rageLeft = rage - stats.decreaseRate;
         rage = Mathf.Max(0, rageLeft);
+        if(rage == 0)
+        {
+            //ApplyRageFinal();
+        }
 
     }
 }

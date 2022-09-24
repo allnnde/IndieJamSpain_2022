@@ -7,7 +7,7 @@ public class PlayerWeaponSystem : MonoBehaviour
 {
 
     private PlayerScript playerScript;
-    public bool canShoot = true;
+    [HideInInspector] public bool canShoot = true;
     private WeaponObject selectedWeapon;
 
     private float shootCooldown = 0;
@@ -56,7 +56,7 @@ public class PlayerWeaponSystem : MonoBehaviour
     {
         var isShooting = System.Convert.ToBoolean(shootAction.ReadValue<float>());
 
-        timeToShoot += (playerScript.IsInRage()) ? Time.deltaTime * 2 : Time.deltaTime;
+        timeToShoot += (playerScript.inRage) ? Time.deltaTime * 2 : Time.deltaTime;
 
         if (canShoot && selectedWeapon != null && isShooting && timeToShoot > shootCooldown)
         {

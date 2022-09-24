@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 2335648365232388114}
   - component: {fileID: 2335648365232388115}
   - component: {fileID: 4790893134170507529}
+  - component: {fileID: 6141108014290680411}
   - component: {fileID: 2335648365232388116}
   - component: {fileID: 1981385253958922281}
   - component: {fileID: 7587092319268457690}
@@ -254,6 +255,30 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 2}
   m_Direction: 0
+--- !u!114 &6141108014290680411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2335648365232388112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81220dc99bdc543408170b77a2cd985c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  moveSpeed: 5
+  dashCooldown: 1
+  dashForce: 400
+  minDamage: 5
+  maxDamage: 7
+  limitTimeRage: 10
+  rageOnDamage: 30
+  rageTime: 5
+  pickupRange: 30
+  inRage: 0
+  canDash: 1
 --- !u!114 &2335648365232388116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -306,17 +331,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bef4932c59c86fb46a561dfa40ba0c8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stats: {fileID: 0}
   health: 0
-  maxHealth: 10
-  moveSpeed: 5
-  dashSpeed: 400
-  pickupRange: 30
-  minDamage: 5
-  maxDamage: 7
-  dashCooldown: 0.5
+  inRage: 0
   canDash: 1
-  rageOnDamage: 30
-  rageTime: 5
 --- !u!114 &1375200135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -330,6 +348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
+  originalDamage: 5
   fireRate: 1.5
   bulletSpeed: 20
   range: 3
@@ -346,6 +365,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 5
+  originalDamage: 5
   fireRate: 1.5
   bulletSpeed: 20
   spread: 20
@@ -363,6 +383,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 3
+  originalDamage: 5
   fireRate: 0.5
   bulletSpeed: 60
 --- !u!1001 &69658854
