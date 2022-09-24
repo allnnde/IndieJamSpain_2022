@@ -389,7 +389,7 @@ MonoBehaviour:
   damage: 3
   originalDamage: 5
   fireRate: 0.5
-  bulletSpeed: 60
+  bulletSpeed: 40
 --- !u!1001 &69658854
 PrefabInstance:
   m_ObjectHideFlags: 0
