@@ -101,16 +101,10 @@ public class PlayerScript : MonoBehaviour
 
     private void CreateRageBullets() 
     {
-        var bullets = 1;
-        var diffAngle = 360 / bullets;
-        for (int i = 1; i <= bullets; i++)
+        var rageBullet = GetComponentsInChildren<RageBulletScript>(true);
+        foreach (var item in rageBullet)
         {
-            //TODO elegir bien posicion de las balas
-            var bullet = ObjectPool.Instance.Spawn(PoolTagsConstants.BULLET_RAGE_POOL_TAG, transform.position + new Vector3(0, 2, 0), Quaternion.identity);
-            //bullet.transform.parent = transform;
-            bullet.GetComponent<RageBulletScript>().Damage = stats.maxDamage * 2;
-            bullet.transform.RotateAround(gameObject.transform.position, new Vector3(0, 0, 1), (diffAngle * i) * Time.deltaTime);
-            bulletList.Add(bullet);
+            item.gameObject.SetActive(true);
         }
 
     }
@@ -118,14 +112,13 @@ public class PlayerScript : MonoBehaviour
     private void ApplyRageFinal()
     {
         inRage = false;
-        
-        foreach(var bullet in bulletList)
+
+        var rageBullet = GetComponentsInChildren<RageBulletScript>(true);
+        foreach (var item in rageBullet)
         {
-            ObjectPool.Instance.Despawn(PoolTagsConstants.BULLET_RAGE_POOL_TAG, bullet);
+            item.gameObject.SetActive(false);
         }
 
-        bulletList.Clear();
-        
         gameObject.GetComponent<SpriteRenderer>().color = Color.white;
         rage = 0f;
     }
