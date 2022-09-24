@@ -6,7 +6,7 @@ public abstract class EnemyController : MonoBehaviour, IPoolable
 {
     public GameObject Owner => gameObject;
     public float MaxLife => 20;
-    private float actualLife;
+    private float actualLife;    
 
     public string PoolTag { get; set; }
 
@@ -51,7 +51,6 @@ public abstract class EnemyController : MonoBehaviour, IPoolable
         if (target.CompareTag("Player"))
         {
             DamageTarget(target.GetComponent<PlayerScript>());
-            ObjectPool.Instance.Despawn(PoolTag, Owner);
         }
     }
 

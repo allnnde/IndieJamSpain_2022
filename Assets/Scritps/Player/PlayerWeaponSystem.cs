@@ -49,8 +49,6 @@ public class PlayerWeaponSystem : MonoBehaviour
         shootCooldown = selectedWeapon.fireRate;
         timeToShoot = 0;
     }
-
-
     private void Update()
     {
         var isShooting = System.Convert.ToBoolean(shootAction.ReadValue<float>());
@@ -64,6 +62,4 @@ public class PlayerWeaponSystem : MonoBehaviour
         }
         
     }
-
-
 }

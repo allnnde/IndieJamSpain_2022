@@ -413,50 +413,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1161691385, guid: 8922056a328865d4481db081f075fbab, type: 3}
-      propertyPath: counter
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1375200135, guid: 8922056a328865d4481db081f075fbab, type: 3}
-      propertyPath: damage
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1375200136, guid: 8922056a328865d4481db081f075fbab, type: 3}
-      propertyPath: damage
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1375200137, guid: 8922056a328865d4481db081f075fbab, type: 3}
-      propertyPath: damage
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1375200137, guid: 8922056a328865d4481db081f075fbab, type: 3}
-      propertyPath: fireRate
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1711183396522364538, guid: 8922056a328865d4481db081f075fbab, type: 3}
-      propertyPath: counter
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1711183396619253694, guid: 8922056a328865d4481db081f075fbab, type: 3}
-      propertyPath: counter
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1711183397115171692, guid: 8922056a328865d4481db081f075fbab, type: 3}
-      propertyPath: counter
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1711183397274687658, guid: 8922056a328865d4481db081f075fbab, type: 3}
-      propertyPath: counter
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1711183397539089890, guid: 8922056a328865d4481db081f075fbab, type: 3}
-      propertyPath: counter
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1711183397828078377, guid: 8922056a328865d4481db081f075fbab, type: 3}
-      propertyPath: counter
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 2335648365232388112, guid: 8922056a328865d4481db081f075fbab, type: 3}
       propertyPath: m_Name
       value: Player
@@ -514,14 +470,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1052556690526546532, guid: ac03bbbaf9158414899d6fed507cd241, type: 3}
-      propertyPath: enemyBullet
-      value: 
-      objectReference: {fileID: 8419706780274471067, guid: 2e4fd94daadf671449e274d3939bc7e0, type: 3}
-    - target: {fileID: 1052556690526546532, guid: ac03bbbaf9158414899d6fed507cd241, type: 3}
-      propertyPath: playerBullet
-      value: 
-      objectReference: {fileID: 4500343415430985465, guid: 9a83a788dbc1fab44982f86b133f50af, type: 3}
     - target: {fileID: 1052556690526546533, guid: ac03bbbaf9158414899d6fed507cd241, type: 3}
       propertyPath: m_RootOrder
       value: 2
