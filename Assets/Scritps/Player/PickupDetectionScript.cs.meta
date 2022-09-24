@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: db40a4de0934761469e402a303754672
+guid: 443144f64a7f486419ef66feaa0ead02
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - pickupHealth: {fileID: 4547319388383063372, guid: d00359e566913274785fad0ed960c204, type: 3}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

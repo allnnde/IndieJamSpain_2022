@@ -5,5 +5,6 @@
     public const string MELEE_ENEMY_POOL_TAG = "MELEE_ENEMY";
     public const string RANGED_ENEMY_POOL_TAG = "RANGED_ENEMY";
     public const string BULLET_RAGE_POOL_TAG = "BULLET_RAGE";
+    public const string PICKUPS_TAG = "PICKUPS_TAG";
 }
 

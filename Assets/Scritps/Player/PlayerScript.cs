@@ -84,12 +84,17 @@ public class PlayerScript : MonoBehaviour
 
         if (rage >= maxRage)
         {
-            //TODO ver si esto es necessario como coroutine, sino ver de trasmormar en async o timer simple
             EnterRage();
         }
     }
 
-    //TODO ver si esto es necessario como coroutine, sino ver de trasmormar en async o timer simple
+    public void Heal(float quantity)
+    {
+        var healthLeft = health + quantity;
+        health = Mathf.Min(stats.maxHealth, healthLeft);
+
+    }
+
     private async Task EnterRage()
     {
         inRage = true;
