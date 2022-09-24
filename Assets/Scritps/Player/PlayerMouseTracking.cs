@@ -47,13 +47,7 @@ public class PlayerMouseTracking : MonoBehaviour
     {
         return Camera.main.ScreenToWorldPoint(Input.mousePosition);
     }
-
-    // Funcion Test para hacer Debug, se borrará en el final
-    private void TestGetAngles()
-    {
-        Debug.Log("Direction Angle: " + DegreeTowardsMouse() + " Direction Vector: " + Vector2TowardsMouse());
-    }
-
+    
     private void SetMouseSpritePosition()
     {
         Vector3 mousePosition = GetMousePosition();

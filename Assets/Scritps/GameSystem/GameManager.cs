@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -13,8 +14,10 @@ public class GameManager : MonoBehaviour
     public EnemyBulletScript enemyBullet;
     public EnemySpawner[] enemiesSpawners;
 
+    public float minuteForWave = 3;
     private float time = 0;
-    private float timeToWave = 10;
+    private double timeToWave;
+    private int level=0;
     void Start()
     {
         ObjectPool.Instance.Pools = new List<Pool>();
@@ -25,6 +28,7 @@ public class GameManager : MonoBehaviour
         ObjectPool.Instance.Start();
 
         enemiesSpawners = FindObjectsOfType<EnemySpawner>(false);
+        timeToWave = TimeSpan.FromMinutes(minuteForWave).TotalSeconds;
     }
 
     // Update is called once per frame
@@ -33,9 +37,10 @@ public class GameManager : MonoBehaviour
         time += Time.deltaTime;
         if (time > timeToWave)
         {
+            level++;
             foreach (var item in enemiesSpawners)
             {
-                item.CreateWave();
+                item.CreateWave(level);
             }
             time = 0;
         }

@@ -4,17 +4,16 @@ using UnityEngine;
 
 public class MeleeEnemyController : EnemyController
 {
-    public float AttackCooldown = 1;
     public float time = 0;
     public override void DamageTarget(PlayerScript player)
     {
-        player.TakeDamage(2f);
+        player.TakeDamage(Damage);
     }
     public override void Move()
     {
         var playerPosition = player.transform.position;
         var direction = playerPosition - transform.position;
-        transform.position += direction.normalized * Time.deltaTime * speed;
+        transform.position += direction.normalized * Time.deltaTime * Speed;
     }
     public void OnCollisionStay2D(Collision2D collision)
     {
@@ -26,7 +25,6 @@ public class MeleeEnemyController : EnemyController
             {
                 DamageTarget(target.GetComponent<PlayerScript>());
                 time = 0;
-                Debug.Log("ataque al Player!!!!");
             }
         }
     }

@@ -13,12 +13,12 @@ public class TimerManager : MonoBehaviour
     private void Start()
     {
         if (instance == null)
-            TimerManager.instance = this.gameObject;
+            instance = this.gameObject;
     }
     private void Update()
     {
         foreach (Timer t in timers)
-            t.Update(Time.deltaTime);       
+            t.Update(Time.deltaTime);
     }
 
     private static void CreateInstance()
@@ -30,7 +30,7 @@ public class TimerManager : MonoBehaviour
 
     public static void SetupTimer(Timer t)
     {
-        if (instance == null) 
+        if (instance == null)
             CreateInstance();
         timers.Add(t);
     }
@@ -41,23 +41,24 @@ public class TimerManager : MonoBehaviour
     }
 }
 
-public class Timer{
-	private float time = 0f;
-	public float endTime;
-	public event Action OnTimerExecute;
-	public Timer(float endTime)
-	{
-		TimerManager.SetupTimer(this);
-		this.endTime = endTime;
-	}
-	public Timer(float endTime, Action function) : this(endTime)
-	{
+public class Timer
+{
+    private float time = 0f;
+    public float endTime;
+    public event Action OnTimerExecute;
+    public Timer(float endTime)
+    {
+        TimerManager.SetupTimer(this);
+        this.endTime = endTime;
+    }
+    public Timer(float endTime, Action function) : this(endTime)
+    {
         OnTimerExecute += function;
-	}
+    }
 
-	
-	public void Update(float delta)
-	{
+
+    public void Update(float delta)
+    {
         time += delta;
         if (time >= endTime)
         {

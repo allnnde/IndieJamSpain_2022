@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,13 +6,15 @@ using UnityEngine;
 public abstract class EnemyController : MonoBehaviour, IPoolable
 {
     public GameObject Owner => gameObject;
-    public float MaxLife => 20;
+    public float MaxLife = 20;
+    public float Damage = 3;
+    public float AttackCooldown = 1;
     private float actualLife;    
 
     public string PoolTag { get; set; }
 
     public string tagPlayer = "Player";
-    public float speed = 2;
+    public float Speed = 2;
     protected GameObject player;
 
     public void OnInstanciate(Transform parent)
@@ -26,6 +29,17 @@ public abstract class EnemyController : MonoBehaviour, IPoolable
         transform.position = position;
         transform.rotation = rotation;
         gameObject.SetActive(true);
+    }
+
+    public void SetLevel(int level)
+    {
+        MaxLife *= 1f + (level / 100f);
+        Damage *= 1f + (level / 100f);
+        Speed *= 1f + (level / 100f);
+        if (AttackCooldown > 0.3)
+        {
+            AttackCooldown *= 1f - (level / 100f);
+        }
     }
 
     public void OnDespawn()
