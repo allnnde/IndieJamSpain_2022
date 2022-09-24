@@ -16,7 +16,7 @@ public class PlayerBulletScript : MonoBehaviour, IPoolable
         {
             var enemyController = collision.gameObject.GetComponent<EnemyController>();
             enemyController.TakeDamage(Damage);
-            player.AddRage(20f);
+            player.AddRage(5f);
 
         }
 
