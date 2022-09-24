@@ -12,12 +12,14 @@ public class GameManager : MonoBehaviour
     public EnemyController rangedEnemyController;
     public PlayerBulletScript playerBullet;
     public EnemyBulletScript enemyBullet;
-    public EnemySpawner[] enemiesSpawners;
 
     public float minuteForWave = 3;
+
+    private EnemySpawner[] enemiesSpawners;
     private float time = 0;
     private double timeToWave;
     private int level=0;
+
     void Start()
     {
         ObjectPool.Instance.Pools = new List<Pool>();
