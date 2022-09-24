@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public abstract class EnemyController : MonoBehaviour, IPoolable
 {
@@ -16,6 +17,7 @@ public abstract class EnemyController : MonoBehaviour, IPoolable
     public string tagPlayer = "Player";
     public float Speed = 2;
     protected GameObject player;
+    public Image lifeBar;
 
     public void OnInstanciate(Transform parent)
     {
@@ -74,6 +76,7 @@ public abstract class EnemyController : MonoBehaviour, IPoolable
     public void TakeDamage(float damage)
     {
         actualLife -= damage;
+        lifeBar.fillAmount = actualLife / MaxLife;
         if(actualLife <= 0)
         {
             if (UnityEngine.Random.Range(0, 100) <= 10)

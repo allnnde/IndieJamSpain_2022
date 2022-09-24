@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour
 {
-    [HideInInspector] public PlayerStats stats;
-
-    [HideInInspector] public float health;
+    public PlayerStats stats = new PlayerStats();
+    private float health;
     private PlayerControls playerControls;
     private PlayerMovement playerMovement;
     private float rage = 0f;
@@ -18,16 +18,15 @@ public class PlayerScript : MonoBehaviour
     private float timeToDash = 0f;
     private float timeWithoutRage = 0f;
 
-    private List<GameObject> bulletList = new List<GameObject>();
+    public Image lifeBar;
+
     private void Awake()
     {
-        stats = GetComponent<PlayerStats>();
         playerControls = new PlayerControls();
         playerControls.Enable();
         playerControls.Player.Dash.performed += CheckDash;
         playerMovement = gameObject.GetComponent<PlayerMovement>();
-
-        health = (stats.startingHealth > 0) ? stats.startingHealth : stats.maxHealth;
+        health = stats.maxHealth;
 
     }
 
@@ -57,9 +56,10 @@ public class PlayerScript : MonoBehaviour
     }
     public void TakeDamage(float dmg)
     {
-        var healthLeft = health - dmg;
-        health = Mathf.Max(0, healthLeft);
+        health -= dmg;
         AddRage(stats.rageOnDamage);
+        
+        lifeBar.fillAmount = health / stats.maxHealth;
 
         if (health == 0)
         {

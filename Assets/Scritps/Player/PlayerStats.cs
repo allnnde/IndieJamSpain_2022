@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStats : MonoBehaviour
+[System.Serializable]
+public class PlayerStats
 {
 
     [Header("Health Settings")]
-    public float startingHealth = -1;
     public float maxHealth = 10f;
 
     [Header("Movement Settings")]
@@ -31,10 +29,5 @@ public class PlayerStats : MonoBehaviour
 
     [HideInInspector] public bool inRage = false;
     [HideInInspector] public bool canDash = true;
-
-    public float GetRandomDamage()
-    {
-        return (Mathf.Round(Random.Range(minDamage, maxDamage) * 10.0f) * 0.1f);
-    }
 
 }

@@ -213,6 +213,7 @@ MonoBehaviour:
   AttackCooldown: 1
   tagPlayer: Player
   Speed: 2
+  lifeBar: {fileID: 8188898834084026373}
   MinimusDistance: 5
   AttackRadius: 6
 --- !u!50 &74720100
@@ -235,7 +236,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 0
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &74720099
 CircleCollider2D:
   m_ObjectHideFlags: 0
