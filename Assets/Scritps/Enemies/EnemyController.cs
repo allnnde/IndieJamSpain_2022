@@ -76,7 +76,13 @@ public abstract class EnemyController : MonoBehaviour, IPoolable
         actualLife -= damage;
         if(actualLife <= 0)
         {
+            if (UnityEngine.Random.Range(0, 100) <= 10)
+            {
+                ObjectPool.Instance.Spawn(PoolTagsConstants.PICKUPS_TAG, transform.position, Quaternion.identity);
+            }
+            
             ObjectPool.Instance.Despawn(PoolTag, Owner);
+            
         }
     }
 }
