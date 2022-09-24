@@ -15,7 +15,7 @@ public class WeaponShotgun : WeaponObject
         {
             // TODO: Implementar el daño
             bullet = ObjectPool.Instance.Spawn(PoolTagsConstants.BULLET_PLAYER_POOL_TAG, transform.position, playerMouse.QuaternionTowardsMouse());
-    		bullet.GetComponent<PlayerBulletScript>().Damage = damage;
+    		bullet.GetComponent<PlayerBulletScript>().Damage = Damage;
             bullet.transform.Rotate(0, 0, Random.Range(-spread, spread));
             bullet.GetComponent<Rigidbody2D>().AddForce(bullet.transform.up * bulletSpeed, ForceMode2D.Impulse);
         }

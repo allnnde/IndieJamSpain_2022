@@ -22,7 +22,7 @@ public class WeaponSword : WeaponObject
             if (item.collider.gameObject.CompareTag("Enemy"))
             {
                 var enemyController = item.collider.gameObject.GetComponent<EnemyController>();
-                enemyController.TakeDamage(damage);
+                enemyController.TakeDamage(Damage);
                 playerScript.AddRage(5f);
             }
         }

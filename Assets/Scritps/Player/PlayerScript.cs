@@ -1,13 +1,11 @@
-using Mono.Cecil;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerScript : MonoBehaviour
 {
 
+    //TODO ver de sacar a una clase/s
     [HideInInspector] public float health;
     public float maxHealth = 10f;
     public float moveSpeed = 5f;
@@ -95,10 +93,12 @@ public class PlayerScript : MonoBehaviour
 
         if (rage >= maxRage)
         {
+            //TODO ver si esto es necessario como coroutine, sino ver de trasmormar en async o timer simple
             StartCoroutine(EnterRage());
         }
     }
 
+    //TODO ver si esto es necessario como coroutine, sino ver de trasmormar en async o timer simple
     private IEnumerator EnterRage()
     {
         inRage = true;
@@ -108,11 +108,11 @@ public class PlayerScript : MonoBehaviour
         rage = 0f;
     }
 
+    //TODO no es necesario si ya tenemos la propiedad
     public bool IsInRage()
     {
         return inRage;
     }
-
     private void Update()
     {
 
@@ -129,7 +129,6 @@ public class PlayerScript : MonoBehaviour
         }
         
     }
-
     private void DecreaseRage()
     {
         //TODO: Parametrizar
