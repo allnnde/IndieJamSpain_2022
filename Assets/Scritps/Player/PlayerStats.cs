@@ -28,6 +28,12 @@ public class PlayerStats
     [Header("Other Stats")]
     public float pickupRange = 30f;
 
+    [Header("Particles")]
+    public ParticleSystem onRageParticle;
+    public ParticleSystem startRageParticle;
+    public ParticleSystem finishRageParticle;
+    public ParticleSystem healParticle;
+
     [HideInInspector] public bool inRage = false;
     [HideInInspector] public bool canDash = true;
 

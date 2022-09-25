@@ -1,6 +1,8 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -100,6 +102,12 @@ public class PlayerScript : MonoBehaviour
     private async Task EnterRage()
     {
         inRage = true;
+        stats.startRageParticle.GetComponent<ParticleSystem>().Play(true);
+        stats.onRageParticle.GetComponent<ParticleSystem>().Play();
+        stats.startRageParticle.GetComponent<ParticleSystem>().Emit(10);
+        stats.onRageParticle.GetComponent<ParticleSystem>().Emit(1);
+
+        Debug.Log(stats.onRageParticle.GetComponent<ParticleSystem>().isPlaying);
         //FF8686
         playerRenderer.GetComponent<SpriteRenderer>().color = stats.rageColor;
         CreateRageBullets();
@@ -120,6 +128,9 @@ public class PlayerScript : MonoBehaviour
     private void ApplyRageFinal()
     {
         inRage = false;
+        stats.onRageParticle.GetComponent<ParticleSystem>().Stop();
+        stats.finishRageParticle.GetComponent<ParticleSystem>().Play();
+        stats.finishRageParticle.GetComponent<ParticleSystem>().Emit(1);
 
         var rageBullet = GetComponentsInChildren<RageBulletScript>(true);
         foreach (var item in rageBullet)

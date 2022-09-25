@@ -662,6 +662,10 @@ MonoBehaviour:
     decreaseRate: 0.05
     rageColor: {r: 1, g: 0.495283, b: 0.495283, a: 1}
     pickupRange: 30
+    onRageParticle: {fileID: 8175582898785616768, guid: cacd25c7c494c424d81260922f1c738c, type: 3}
+    startRageParticle: {fileID: 4065435583449567534, guid: bdcb1b719dbed514ea933e1cac29b269, type: 3}
+    finishRageParticle: {fileID: 8659842165245078325, guid: 5f5eff08c8d85314c9baf31518c75e72, type: 3}
+    healParticle: {fileID: 5156128281085242372, guid: 26793c2efaaef9042b12eb1cd058077a, type: 3}
     inRage: 0
     canDash: 1
   inRage: 0
