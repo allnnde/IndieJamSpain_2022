@@ -115,16 +115,8 @@ public abstract class EnemyController : MonoBehaviour, IPoolable
 
     protected void AnimateMove(Vector2 newPosition)
     {
-        var FloorToInt = Vector2Int.FloorToInt(newPosition);
-        var CeilToInt = Vector2Int.CeilToInt(newPosition);
         var RoundToInt = Vector2Int.RoundToInt(newPosition);
-
-        //Debug.Log("FloorToInt " + FloorToInt);
-        //Debug.Log("CeilToInt " + CeilToInt);
-        Debug.Log("RoundToInt " + RoundToInt);
-
         var animation = GetAnimationName(RoundToInt);
-        Debug.Log("animation " + animation);
         animator.Play(animation);
         spriteRenderer.flipX = animation == "Anim_Left";
     }

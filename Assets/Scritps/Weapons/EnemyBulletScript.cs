@@ -15,7 +15,10 @@ public class EnemyBulletScript : MonoBehaviour, IPoolable
     private void Update()
     {
         var direction = shootPoint - originPoint;
-        transform.position += direction.normalized * Time.deltaTime * speed;
+        transform.position += direction.normalized * Time.deltaTime * speed;        
+        var angle = (Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg) - 90;
+        transform.rotation = Quaternion.Euler(0,0,angle);
+
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -54,6 +57,6 @@ public class EnemyBulletScript : MonoBehaviour, IPoolable
 
     public void OnDespawn()
     {
-        gameObject?.SetActive(false);   
+        gameObject?.SetActive(false);
     }
 }

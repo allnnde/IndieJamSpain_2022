@@ -41,7 +41,7 @@ public class RangedEnemyController : EnemyController
         else        
             transform.position -= direction.normalized * Time.deltaTime * Speed;
 
-        //AnimateMove(direction.normalized);
+        AnimateMove(direction.normalized);
     }
 
 }
