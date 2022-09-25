@@ -23,6 +23,7 @@ public class PlayerStats
     public float rageOnDamage = 30f;
     public int rageTime = 5;
     public float decreaseRate = 0.05f;
+    public Color rageColor = new Color(255, 134, 134);
 
     [Header("Other Stats")]
     public float pickupRange = 30f;

@@ -6,7 +6,8 @@ using UnityEngine.InputSystem;
 public class PauseScript : MonoBehaviour
 {
     private PlayerControls playerControls;
-    private bool isOpen = false;
+    private bool isOpen = true;
+    public GameObject canvas;
 
     private void Awake()
     {
@@ -15,8 +16,22 @@ public class PauseScript : MonoBehaviour
         playerControls.UI.Pause.performed += ToggleMenu;
     }
 
+    private void Start()
+    {
+
+        ToggleMenu();
+        canvas.GetComponent<Canvas>().enabled = true;
+
+    }
+
     private void ToggleMenu(InputAction.CallbackContext context)
     { 
+        isOpen = !isOpen;
+        gameObject.SetActive(isOpen);
+    }
+
+    private void ToggleMenu()
+    {
         isOpen = !isOpen;
         gameObject.SetActive(isOpen);
     }

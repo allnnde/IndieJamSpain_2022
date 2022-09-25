@@ -660,12 +660,14 @@ MonoBehaviour:
     rageOnDamage: 30
     rageTime: 5
     decreaseRate: 0.05
+    rageColor: {r: 1, g: 0.495283, b: 0.495283, a: 1}
     pickupRange: 30
     inRage: 0
     canDash: 1
   inRage: 0
   canDash: 1
   lifeBar: {fileID: 1006662653}
+  playerRenderer: {fileID: 1729139465684959983}
 --- !u!114 &1375200135
 MonoBehaviour:
   m_ObjectHideFlags: 0

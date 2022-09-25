@@ -19,6 +19,7 @@ public class PlayerScript : MonoBehaviour
     private float timeWithoutRage = 0f;
 
     public Image lifeBar;
+    public GameObject playerRenderer;
 
     private void Awake()
     {
@@ -92,12 +93,15 @@ public class PlayerScript : MonoBehaviour
     {
         var healthLeft = health + quantity;
         health = Mathf.Min(stats.maxHealth, healthLeft);
+        lifeBar.fillAmount = health / stats.maxHealth;
 
     }
 
     private async Task EnterRage()
     {
         inRage = true;
+        //FF8686
+        playerRenderer.GetComponent<SpriteRenderer>().color = stats.rageColor;
         CreateRageBullets();
         await Task.Delay(stats.rageTime * 1000);
         ApplyRageFinal();
@@ -122,6 +126,8 @@ public class PlayerScript : MonoBehaviour
         {
             item.gameObject.SetActive(false);
         }
+
+        playerRenderer.GetComponent<SpriteRenderer>().color = Color.white;
         rage = 0f;
     }
 
