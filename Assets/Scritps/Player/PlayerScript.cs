@@ -71,7 +71,7 @@ public class PlayerScript : MonoBehaviour
     private void Die()
     {
         Debug.Log("He muerto nooooOOoOoOOoOooOOO");
-        //gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
 
     public void AddRage(float quantity)
