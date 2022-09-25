@@ -64,7 +64,7 @@ public class PlayerScript : MonoBehaviour
         
         lifeBar.fillAmount = health / stats.maxHealth;
 
-        if (health == 0)
+        if (health <= 0)
         {
             Die();
         }
@@ -73,8 +73,8 @@ public class PlayerScript : MonoBehaviour
 
     private void Die()
     {
-        Debug.Log("He muerto nooooOOoOoOOoOooOOO");
         gameObject.SetActive(false);
+        stats.deathParticle?.GetComponent<ParticleSystem>().Emit(1);
     }
 
     public void AddRage(float quantity)
@@ -87,7 +87,7 @@ public class PlayerScript : MonoBehaviour
 
         if (rage >= maxRage)
         {
-            EnterRage();
+            _ = EnterRage();
         }
     }
 
@@ -102,13 +102,12 @@ public class PlayerScript : MonoBehaviour
     private async Task EnterRage()
     {
         inRage = true;
-        stats.startRageParticle.GetComponent<ParticleSystem>().Play(true);
-        stats.onRageParticle.GetComponent<ParticleSystem>().Play();
-        stats.startRageParticle.GetComponent<ParticleSystem>().Emit(10);
-        stats.onRageParticle.GetComponent<ParticleSystem>().Emit(1);
+        stats.startRageParticle?.GetComponent<ParticleSystem>().Play(true);
+        stats.onRageParticle?.GetComponent<ParticleSystem>().Play();
+        stats.startRageParticle?.GetComponent<ParticleSystem>().Emit(1);
+        stats.onRageParticle?.GetComponent<ParticleSystem>().Emit(1);
 
         Debug.Log(stats.onRageParticle.GetComponent<ParticleSystem>().isPlaying);
-        //FF8686
         playerRenderer.GetComponent<SpriteRenderer>().color = stats.rageColor;
         CreateRageBullets();
         await Task.Delay(stats.rageTime * 1000);
@@ -128,9 +127,9 @@ public class PlayerScript : MonoBehaviour
     private void ApplyRageFinal()
     {
         inRage = false;
-        stats.onRageParticle.GetComponent<ParticleSystem>().Stop();
-        stats.finishRageParticle.GetComponent<ParticleSystem>().Play();
-        stats.finishRageParticle.GetComponent<ParticleSystem>().Emit(1);
+        stats.onRageParticle?.GetComponent<ParticleSystem>().Stop();
+        stats.finishRageParticle?.GetComponent<ParticleSystem>().Play();
+        stats.finishRageParticle?.GetComponent<ParticleSystem>().Emit(1);
 
         var rageBullet = GetComponentsInChildren<RageBulletScript>(true);
         foreach (var item in rageBullet)
