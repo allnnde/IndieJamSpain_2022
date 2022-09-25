@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isDashing = false;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
+    private string animPreviusly="";
 
 
     private void Awake()
@@ -59,17 +60,16 @@ public class PlayerMovement : MonoBehaviour
     private string GetAnimationName(Vector2 direction)
     {
         if (direction.x == 0 && direction.y > 0)
-            return "Anim_Back"; // AnimationLabelConstants.WalkingTopLabel;
+            animPreviusly = "Anim_Back"; // AnimationLabelConstants.WalkingTopLabel;
         if (direction.x == 0 && direction.y < 0)
-            return "Anim_Front";// AnimationLabelConstants.WalkingBottomLabel;
+            animPreviusly = "Anim_Front";// AnimationLabelConstants.WalkingBottomLabel;
         if (direction.x < 0 && direction.y == 0)
-            return "Anim_Left";//AnimationLabelConstants.WalkingLeftLabel;
+            animPreviusly = "Anim_Left";//AnimationLabelConstants.WalkingLeftLabel;
         if (direction.x > 0 && direction.y == 0)
-            return "Anim_Right";// AnimationLabelConstants.WalkingRightLabel;
+            animPreviusly = "Anim_Right";// AnimationLabelConstants.WalkingRightLabel;
         if (direction.x == 0 && direction.y == 0)
-            return "Anim_Idle";//AnimationLabelConstants.IdleLabel;
-
-        return string.Empty;
+            animPreviusly = "Anim_Idle";//AnimationLabelConstants.IdleLabel;
+        return animPreviusly;
     }
 
 }

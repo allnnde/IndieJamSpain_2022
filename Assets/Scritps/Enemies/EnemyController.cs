@@ -10,7 +10,8 @@ public abstract class EnemyController : MonoBehaviour, IPoolable
     public float MaxLife = 20;
     public float Damage = 3;
     public float AttackCooldown = 1;
-    private float actualLife;    
+    private float actualLife;
+    string animPreviusly = "";
 
     public string PoolTag { get; set; }
 
@@ -100,17 +101,16 @@ public abstract class EnemyController : MonoBehaviour, IPoolable
     private string GetAnimationName(Vector2 direction)
     {
         if (direction.x == 0 && direction.y > 0)
-            return "Anim_Back"; // AnimationLabelConstants.WalkingTopLabel;
+            animPreviusly = "Anim_Back"; // AnimationLabelConstants.WalkingTopLabel;
         if (direction.x == 0 && direction.y < 0)
-            return "Anim_Front";// AnimationLabelConstants.WalkingBottomLabel;
+            animPreviusly = "Anim_Front";// AnimationLabelConstants.WalkingBottomLabel;
         if (direction.x < 0 && direction.y == 0)
-            return "Anim_Left";//AnimationLabelConstants.WalkingLeftLabel;
+            animPreviusly = "Anim_Left";//AnimationLabelConstants.WalkingLeftLabel;
         if (direction.x > 0 && direction.y == 0)
-            return "Anim_Right";// AnimationLabelConstants.WalkingRightLabel;
+            animPreviusly = "Anim_Right";// AnimationLabelConstants.WalkingRightLabel;
         if (direction.x == 0 && direction.y == 0)
-            return "Anim_Idle";//AnimationLabelConstants.IdleLabel;
-
-        return string.Empty;
+            animPreviusly = "Anim_Idle";//AnimationLabelConstants.IdleLabel;
+        return animPreviusly;
     }
 
     protected void AnimateMove(Vector2 newPosition)
