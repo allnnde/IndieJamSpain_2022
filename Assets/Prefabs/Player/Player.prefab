@@ -651,9 +651,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats:
     maxHealth: 100
-    moveSpeed: 5
+    moveSpeed: 7
     dashCooldown: 1
-    dashForce: 400
+    dashForce: 500
     minDamage: 5
     maxDamage: 7
     limitTimeRage: 10
