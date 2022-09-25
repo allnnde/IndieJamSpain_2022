@@ -20,7 +20,9 @@ public class SceneController : Singleton<SceneController>
 
     public void LoadGameplayscene()
     {
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("Map");
+        AudioManager.Instance.StopMenuMusic();
+
     }
 
 }

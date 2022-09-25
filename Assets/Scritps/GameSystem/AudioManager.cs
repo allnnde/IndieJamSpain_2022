@@ -118,6 +118,11 @@ public class AudioManager : Singleton<AudioManager>
         MusicAS.Play();
     }
 
+    public void StopMenuMusic()
+    {
+        MusicAS.Stop();
+    }
+
     public void PlayMenuMusic()
     {
 
