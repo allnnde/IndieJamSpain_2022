@@ -43,11 +43,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void AnimateMove(Vector2 newPosition)
     {
-        Debug.Log(newPosition);
         var animation = GetAnimationName(newPosition);
         animator.Play(animation);
-        spriteRenderer.flipX = animation == "Hero_Left";
-
+        spriteRenderer.flipX = animation == "Anim_Left";
     }
 
     public IEnumerator Dash(float speed, Vector2 direction)
@@ -61,15 +59,15 @@ public class PlayerMovement : MonoBehaviour
     private string GetAnimationName(Vector2 direction)
     {
         if (direction.x == 0 && direction.y > 0)
-            return "Hero_Back"; // AnimationLabelConstants.WalkingTopLabel;
+            return "Anim_Back"; // AnimationLabelConstants.WalkingTopLabel;
         if (direction.x == 0 && direction.y < 0)
-            return "Hero_Front";// AnimationLabelConstants.WalkingBottomLabel;
+            return "Anim_Front";// AnimationLabelConstants.WalkingBottomLabel;
         if (direction.x < 0 && direction.y == 0)
-            return "Hero_Left";//AnimationLabelConstants.WalkingLeftLabel;
+            return "Anim_Left";//AnimationLabelConstants.WalkingLeftLabel;
         if (direction.x > 0 && direction.y == 0)
-            return "Hero_Right";// AnimationLabelConstants.WalkingRightLabel;
+            return "Anim_Right";// AnimationLabelConstants.WalkingRightLabel;
         if (direction.x == 0 && direction.y == 0)
-            return "Hero_Idle";//AnimationLabelConstants.IdleLabel;
+            return "Anim_Idle";//AnimationLabelConstants.IdleLabel;
 
         return string.Empty;
     }

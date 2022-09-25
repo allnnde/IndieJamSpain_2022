@@ -17,10 +17,18 @@ public abstract class EnemyController : MonoBehaviour, IPoolable
     public string tagPlayer = "Player";
     public float Speed = 2;
     protected GameObject player;
+
+    protected Animator animator;
+    protected SpriteRenderer spriteRenderer;
+
     public Image lifeBar;
+
 
     public void OnInstanciate(Transform parent)
     {
+        animator = GetComponentInChildren<Animator>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+
         transform.parent = parent;
         gameObject.SetActive(false);
         actualLife = MaxLife;
@@ -88,4 +96,37 @@ public abstract class EnemyController : MonoBehaviour, IPoolable
             
         }
     }
+
+    private string GetAnimationName(Vector2 direction)
+    {
+        if (direction.x == 0 && direction.y > 0)
+            return "Anim_Back"; // AnimationLabelConstants.WalkingTopLabel;
+        if (direction.x == 0 && direction.y < 0)
+            return "Anim_Front";// AnimationLabelConstants.WalkingBottomLabel;
+        if (direction.x < 0 && direction.y == 0)
+            return "Anim_Left";//AnimationLabelConstants.WalkingLeftLabel;
+        if (direction.x > 0 && direction.y == 0)
+            return "Anim_Right";// AnimationLabelConstants.WalkingRightLabel;
+        if (direction.x == 0 && direction.y == 0)
+            return "Anim_Idle";//AnimationLabelConstants.IdleLabel;
+
+        return string.Empty;
+    }
+
+    protected void AnimateMove(Vector2 newPosition)
+    {
+        var FloorToInt = Vector2Int.FloorToInt(newPosition);
+        var CeilToInt = Vector2Int.CeilToInt(newPosition);
+        var RoundToInt = Vector2Int.RoundToInt(newPosition);
+
+        //Debug.Log("FloorToInt " + FloorToInt);
+        //Debug.Log("CeilToInt " + CeilToInt);
+        Debug.Log("RoundToInt " + RoundToInt);
+
+        var animation = GetAnimationName(RoundToInt);
+        Debug.Log("animation " + animation);
+        animator.Play(animation);
+        spriteRenderer.flipX = animation == "Anim_Left";
+    }
+
 }

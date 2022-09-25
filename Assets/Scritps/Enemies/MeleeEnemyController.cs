@@ -14,6 +14,7 @@ public class MeleeEnemyController : EnemyController
         var playerPosition = player.transform.position;
         var direction = playerPosition - transform.position;
         transform.position += direction.normalized * Time.deltaTime * Speed;
+        AnimateMove(direction.normalized);
     }
     public void OnCollisionStay2D(Collision2D collision)
     {

@@ -98,7 +98,6 @@ public class PlayerScript : MonoBehaviour
     private async Task EnterRage()
     {
         inRage = true;
-        gameObject.GetComponent<SpriteRenderer>().color = Color.red;
         CreateRageBullets();
         await Task.Delay(stats.rageTime * 1000);
         ApplyRageFinal();
@@ -123,8 +122,6 @@ public class PlayerScript : MonoBehaviour
         {
             item.gameObject.SetActive(false);
         }
-
-        gameObject.GetComponent<SpriteRenderer>().color = Color.white;
         rage = 0f;
     }
 
