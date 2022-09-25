@@ -52,7 +52,7 @@ public class PlayerWeaponSystem : MonoBehaviour
         }
 
         selectedWeapon.enabled = true;
-        shootCooldown = selectedWeapon.fireRate;
+        shootCooldown = selectedWeapon.fireRate / 2;
         
         timeToShoot = 0;
     }
@@ -60,12 +60,14 @@ public class PlayerWeaponSystem : MonoBehaviour
     {
         var isShooting = System.Convert.ToBoolean(shootAction.ReadValue<float>());
 
-        timeToShoot += (playerScript.inRage) ? Time.deltaTime * 2 : Time.deltaTime;
+        timeToShoot += (playerScript.inRage) ? Time.deltaTime * playerScript.stats.rageMultiplier : Time.deltaTime;
 
         if (canShoot && selectedWeapon != null && isShooting && timeToShoot > shootCooldown)
         {
             selectedWeapon.Attack();
             timeToShoot = 0;
+            // QOL, cambiar armas hace que esa arma tenga su mitad de cooldown pa poder disparar
+            shootCooldown = selectedWeapon.fireRate;
         }
         
     }

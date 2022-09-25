@@ -660,12 +660,14 @@ MonoBehaviour:
     rageOnDamage: 30
     rageTime: 5
     decreaseRate: 0.05
+    rageMultiplier: 2
     rageColor: {r: 1, g: 0.495283, b: 0.495283, a: 1}
     pickupRange: 30
     onRageParticle: {fileID: 8175582898785616768, guid: cacd25c7c494c424d81260922f1c738c, type: 3}
     startRageParticle: {fileID: 4065435583449567534, guid: bdcb1b719dbed514ea933e1cac29b269, type: 3}
     finishRageParticle: {fileID: 8659842165245078325, guid: 5f5eff08c8d85314c9baf31518c75e72, type: 3}
     healParticle: {fileID: 5156128281085242372, guid: 26793c2efaaef9042b12eb1cd058077a, type: 3}
+    deathParticle: {fileID: 0}
     inRage: 0
     canDash: 1
   inRage: 0
@@ -868,11 +870,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8285519042133746989, guid: 73b3cae7c906aa343bc632efde926768, type: 3}
       propertyPath: rotationSpeed
-      value: 200
+      value: 220
       objectReference: {fileID: 0}
     - target: {fileID: 2209206195098279356, guid: 73b3cae7c906aa343bc632efde926768, type: 3}
       propertyPath: m_Name
       value: Rage_Bullet_Player (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7093981180578610000, guid: 73b3cae7c906aa343bc632efde926768, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7093981180578610000, guid: 73b3cae7c906aa343bc632efde926768, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7093981180578610000, guid: 73b3cae7c906aa343bc632efde926768, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 9014123337930142007, guid: 73b3cae7c906aa343bc632efde926768, type: 3}
       propertyPath: m_RootOrder
@@ -1231,7 +1245,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8285519042133746989, guid: 73b3cae7c906aa343bc632efde926768, type: 3}
       propertyPath: rotationSpeed
-      value: 200
+      value: 220
       objectReference: {fileID: 0}
     - target: {fileID: 2209206195098279356, guid: 73b3cae7c906aa343bc632efde926768, type: 3}
       propertyPath: m_Name

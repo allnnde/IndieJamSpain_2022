@@ -22,7 +22,7 @@ public abstract class WeaponObject : MonoBehaviour
 
     public void Attack()
     {
-        damage = playerScript.inRage ? originalDamage * 2 : originalDamage;
+        damage = playerScript.inRage ? originalDamage * playerScript.stats.rageMultiplier : originalDamage;
         PreparateAttackMode();
     }
     public abstract void PreparateAttackMode();
