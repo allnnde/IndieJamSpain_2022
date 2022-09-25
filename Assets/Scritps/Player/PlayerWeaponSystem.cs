@@ -20,7 +20,11 @@ public class PlayerWeaponSystem : MonoBehaviour
     {
         playerScript = gameObject.GetComponent<PlayerScript>();
         var playerControls = playerScript.getPlayerControls();
-
+        if (playerControls == null)
+        {
+            playerControls = new PlayerControls();
+            playerControls.Enable();
+        }
         weaponObjects.Add(WeaponType.Sword, GetComponent<WeaponSword>());
         weaponObjects.Add(WeaponType.Pistol, GetComponent<WeaponPistol>());
         weaponObjects.Add(WeaponType.Shotgun, GetComponent<WeaponShotgun>());
@@ -33,7 +37,7 @@ public class PlayerWeaponSystem : MonoBehaviour
         playerControls.Weapons.SwitchTo2.performed += (InputAction.CallbackContext context) => SwitchWeapon(WeaponType.Pistol);
         playerControls.Weapons.SwitchTo3.performed += (InputAction.CallbackContext context) => SwitchWeapon(WeaponType.Shotgun);
 
-        shootAction = playerScript.getPlayerControls().Player.Shoot;
+        shootAction = playerControls.Player.Shoot;
 
     }
 
