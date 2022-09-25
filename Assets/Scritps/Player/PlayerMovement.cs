@@ -10,12 +10,16 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector] public bool canMove = true;
 
     private bool isDashing = false;
+    private Animator animator;
+    private SpriteRenderer spriteRenderer;
 
 
     private void Awake()
     {
-        playerScript = this.gameObject.GetComponent<PlayerScript>();
-        rigidBody = this.gameObject.GetComponent<Rigidbody2D>();
+        playerScript = GetComponent<PlayerScript>();
+        rigidBody = GetComponent<Rigidbody2D>();
+        animator = GetComponentInChildren<Animator>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     // Calls 50 times a second, better to use with physics
@@ -32,7 +36,18 @@ public class PlayerMovement : MonoBehaviour
         var speed = (playerScript.inRage) ? playerScript.stats.moveSpeed * 2 : playerScript.stats.moveSpeed;
         var newPosition = rigidBody.position + movement * speed * Time.fixedDeltaTime;
 
+        AnimateMove(movement);
+
         rigidBody.MovePosition(newPosition);
+    }
+
+    private void AnimateMove(Vector2 newPosition)
+    {
+        Debug.Log(newPosition);
+        var animation = GetAnimationName(newPosition);
+        animator.Play(animation);
+        spriteRenderer.flipX = animation == "Hero_Left";
+
     }
 
     public IEnumerator Dash(float speed, Vector2 direction)
@@ -42,4 +57,21 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         isDashing = false;
     }
+
+    private string GetAnimationName(Vector2 direction)
+    {
+        if (direction.x == 0 && direction.y > 0)
+            return "Hero_Back"; // AnimationLabelConstants.WalkingTopLabel;
+        if (direction.x == 0 && direction.y < 0)
+            return "Hero_Front";// AnimationLabelConstants.WalkingBottomLabel;
+        if (direction.x < 0 && direction.y == 0)
+            return "Hero_Left";//AnimationLabelConstants.WalkingLeftLabel;
+        if (direction.x > 0 && direction.y == 0)
+            return "Hero_Right";// AnimationLabelConstants.WalkingRightLabel;
+        if (direction.x == 0 && direction.y == 0)
+            return "Hero_Idle";//AnimationLabelConstants.IdleLabel;
+
+        return string.Empty;
+    }
+
 }
