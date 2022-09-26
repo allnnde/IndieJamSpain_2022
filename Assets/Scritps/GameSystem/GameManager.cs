@@ -54,4 +54,9 @@ public class GameManager : MonoBehaviour
             hordasText.text = $"Rounde: {level + 1}";
         }
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }
