@@ -27,6 +27,7 @@ public class TransitionManager : Singleton<TransitionManager>
 
     public void LoadMenu()
     {
+        Time.timeScale = 1f;
         ExitTransition().Play()
                         .OnComplete(() => SceneController.Instance.LoadCore());
 

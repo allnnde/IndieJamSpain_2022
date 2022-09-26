@@ -12,7 +12,7 @@ public class PlayerMouseTracking : MonoBehaviour
     public GameObject weaponPivot;
     void Start()
     {
-        Cursor.visible = false;
+        
     }
 
     private static Vector2 RadianToVector2(float radian)
