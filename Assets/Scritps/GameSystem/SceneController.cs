@@ -17,6 +17,11 @@ public class SceneController : Singleton<SceneController>
         SceneManager.LoadScene("MainMenu");
         AudioManager.Instance.PlayMenuMusic();
     }
+    public void LoadCore()
+    {
+        SceneManager.LoadScene("Core");
+        
+    }
 
     public void LoadGameplayscene()
     {
