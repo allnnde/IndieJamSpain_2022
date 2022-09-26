@@ -5,7 +5,7 @@ using DG.Tweening;
 
 public class TransitionManager : Singleton<TransitionManager>
 {
-    public bool OnMainMenu;
+    
 
     [Space(10)]
     public Transform TransitionPanel;
@@ -23,6 +23,13 @@ public class TransitionManager : Singleton<TransitionManager>
         ExitTransition().Play()
                         .OnComplete(() => SceneController.Instance.LoadGameplayscene());
         
+    }
+
+    public void LoadMenu()
+    {
+        ExitTransition().Play()
+                        .OnComplete(() => SceneController.Instance.LoadCore());
+
     }
 
     public void DoEnterTransition()

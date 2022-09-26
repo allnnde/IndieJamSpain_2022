@@ -30,8 +30,13 @@ public class EnemyBulletScript : MonoBehaviour, IPoolable
             origen.DamageTarget(player);
             ObjectPool.Instance.Despawn(PoolTag, Owner);
         }
+        if (collision.gameObject.CompareTag("Obstacles"))
+        {
+            ObjectPool.Instance.Despawn(PoolTag, Owner);
+        }
 
     }
+
 
     void OnBecameInvisible()
     {

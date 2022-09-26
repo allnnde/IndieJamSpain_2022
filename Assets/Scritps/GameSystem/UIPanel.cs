@@ -6,7 +6,7 @@ public class UIPanel : MonoBehaviour
     private CanvasGroup _panelCanvas;
     private float _showPanelTime = 0.5f;
 
-    private bool _isShowing = false;
+    public bool _isShowing = false;
 
     private void Awake()
     {
