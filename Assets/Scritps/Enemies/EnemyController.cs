@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,6 +24,8 @@ public abstract class EnemyController : MonoBehaviour, IPoolable
     protected SpriteRenderer spriteRenderer;
 
     public Image lifeBar;
+
+    public ParticleSystem deathParticleSystem;
 
 
     public void OnInstanciate(Transform parent)
@@ -84,6 +87,7 @@ public abstract class EnemyController : MonoBehaviour, IPoolable
 
     public void TakeDamage(float damage)
     {
+        deathParticleSystem.Play();
         actualLife -= damage;
         lifeBar.fillAmount = actualLife / MaxLife;
         if(actualLife <= 0)
@@ -92,7 +96,6 @@ public abstract class EnemyController : MonoBehaviour, IPoolable
             {
                 ObjectPool.Instance.Spawn(PoolTagsConstants.PICKUPS_TAG, transform.position, Quaternion.identity);
             }
-            
             ObjectPool.Instance.Despawn(PoolTag, Owner);
             
         }
