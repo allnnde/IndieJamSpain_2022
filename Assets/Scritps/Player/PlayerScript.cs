@@ -90,7 +90,7 @@ public class PlayerScript : MonoBehaviour
 
         if (rage >= maxRage)
         {
-            _ = EnterRage();
+            EnterRage();
         }
         rageBar.fillAmount = rage / maxRage;
     }
@@ -100,6 +100,7 @@ public class PlayerScript : MonoBehaviour
         var healthLeft = health + quantity;
         health = Mathf.Min(stats.maxHealth, healthLeft);
         lifeBar.fillAmount = health / stats.maxHealth;
+        stats.healParticle.Play();
 
     }
 
@@ -111,7 +112,6 @@ public class PlayerScript : MonoBehaviour
         stats.startRageParticle?.GetComponent<ParticleSystem>().Emit(1);
         stats.onRageParticle?.GetComponent<ParticleSystem>().Emit(1);
 
-        Debug.Log(stats.onRageParticle.GetComponent<ParticleSystem>().isPlaying);
         playerRenderer.GetComponent<SpriteRenderer>().color = stats.rageColor;
         CreateRageBullets();
         await Task.Delay(stats.rageTime * 1000);
