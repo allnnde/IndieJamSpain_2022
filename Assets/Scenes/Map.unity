@@ -595,17 +595,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 190358549}
   m_CullTransparentMesh: 1
---- !u!114 &227899240 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1052556690526546532, guid: ac03bbbaf9158414899d6fed507cd241, type: 3}
-  m_PrefabInstance: {fileID: 1110768664}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f55f56232fd61484494ba1eba5e50622, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &237620021
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1473,9 +1462,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 227899240}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: QuitGame
+      - m_Target: {fileID: 923225597}
+        m_TargetAssemblyTypeName: TransitionManager, Assembly-CSharp
+        m_MethodName: LoadMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
