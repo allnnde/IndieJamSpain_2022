@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 public enum WeaponType
 {
-    Sword,
-    Pistol,
-    Shotgun
+    Sword = 1,
+    Pistol = 2,
+    Shotgun = 3
 
 }
 
