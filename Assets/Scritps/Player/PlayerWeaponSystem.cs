@@ -13,6 +13,7 @@ public class PlayerWeaponSystem : MonoBehaviour
 
     private float shootCooldown = 0;
     private float timeToShoot;
+    public GameObject holdWeapon;
 
     private Dictionary<WeaponType, WeaponObject> weaponObjects = new Dictionary<WeaponType, WeaponObject>();
     private Dictionary<WeaponType, Image> weaponObjectsImage = new Dictionary<WeaponType, Image>();
@@ -70,7 +71,8 @@ public class PlayerWeaponSystem : MonoBehaviour
             image.color = Color.black;
         }
 
-        weaponImage.color = Color.white;    
+        weaponImage.color = Color.white;
+        holdWeapon.GetComponent<SpriteRenderer>().sprite = weaponImage.sprite;
 
 
         selectedWeapon.enabled = true;

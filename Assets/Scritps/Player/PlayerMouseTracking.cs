@@ -9,6 +9,7 @@ public class PlayerMouseTracking : MonoBehaviour
 
     public GameObject mouseSprite = null;
     public bool canDetect = true;
+    public GameObject weaponPivot;
     void Start()
     {
         Cursor.visible = false;
@@ -35,6 +36,14 @@ public class PlayerMouseTracking : MonoBehaviour
         return result;
     }
 
+    public Quaternion QuaternionTowardsMouseCooler()
+    {
+        Vector3 vector = new Vector3(0, 0, DegreeTowardsMouse());
+        Quaternion result = Quaternion.identity;
+        result.eulerAngles = vector;
+        return result;
+    }
+
 
     public Vector2 Vector2TowardsMouse(bool rounded = false)
     {
@@ -56,6 +65,7 @@ public class PlayerMouseTracking : MonoBehaviour
         Vector3 mousePosition = GetMousePosition();
         Vector3 newSpritePosition = new Vector3(mousePosition.x, mousePosition.y, 0);
         mouseSprite.transform.position = newSpritePosition;
+        weaponPivot.transform.rotation = QuaternionTowardsMouseCooler();
     }
 
     // Update is called once per frame
