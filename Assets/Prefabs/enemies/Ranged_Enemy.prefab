@@ -246,6 +246,7 @@ Transform:
   m_Children:
   - {fileID: 7596628502246614723}
   - {fileID: 2706181123704777085}
+  - {fileID: 7420927460727470038}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -267,6 +268,7 @@ MonoBehaviour:
   tagPlayer: Player
   Speed: 2
   lifeBar: {fileID: 8188898834084026373}
+  deathParticleSystem: {fileID: 7420927460727470033}
   MinimusDistance: 5
   AttackRadius: 6
 --- !u!50 &74720100
@@ -484,3 +486,70 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!1001 &3837514538762072703
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 3024672621678855274}
+    m_Modifications:
+    - target: {fileID: 6034252927824381353, guid: f87431875f896a74aba5395d58ff8e46, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6034252927824381353, guid: f87431875f896a74aba5395d58ff8e46, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6034252927824381353, guid: f87431875f896a74aba5395d58ff8e46, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6034252927824381353, guid: f87431875f896a74aba5395d58ff8e46, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6034252927824381353, guid: f87431875f896a74aba5395d58ff8e46, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6034252927824381353, guid: f87431875f896a74aba5395d58ff8e46, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6034252927824381353, guid: f87431875f896a74aba5395d58ff8e46, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6034252927824381353, guid: f87431875f896a74aba5395d58ff8e46, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6034252927824381353, guid: f87431875f896a74aba5395d58ff8e46, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 6034252927824381353, guid: f87431875f896a74aba5395d58ff8e46, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6034252927824381353, guid: f87431875f896a74aba5395d58ff8e46, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6034252927824381356, guid: f87431875f896a74aba5395d58ff8e46, type: 3}
+      propertyPath: m_Name
+      value: SlimeDeathParticle
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f87431875f896a74aba5395d58ff8e46, type: 3}
+--- !u!198 &7420927460727470033 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6034252927824381358, guid: f87431875f896a74aba5395d58ff8e46, type: 3}
+  m_PrefabInstance: {fileID: 3837514538762072703}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7420927460727470038 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6034252927824381353, guid: f87431875f896a74aba5395d58ff8e46, type: 3}
+  m_PrefabInstance: {fileID: 3837514538762072703}
+  m_PrefabAsset: {fileID: 0}
