@@ -23,12 +23,15 @@ public class PlayerScript : MonoBehaviour
     public Image lifeBar;
     public GameObject playerRenderer;
 
+    public Image rageBar;
+
     private void Awake()
     {
         playerControls = new PlayerControls();
         playerControls.Enable();
         playerControls.Player.Dash.performed += CheckDash;
         playerMovement = gameObject.GetComponent<PlayerMovement>();
+        rageBar = GameObject.Find("rageBar").GetComponent<Image>();
         health = stats.maxHealth;
 
     }
@@ -89,6 +92,7 @@ public class PlayerScript : MonoBehaviour
         {
             _ = EnterRage();
         }
+        rageBar.fillAmount = rage / maxRage;
     }
 
     public void Heal(float quantity)
@@ -139,6 +143,7 @@ public class PlayerScript : MonoBehaviour
 
         playerRenderer.GetComponent<SpriteRenderer>().color = Color.white;
         rage = 0f;
+        rageBar.fillAmount = 0f;
     }
 
     private void Update()

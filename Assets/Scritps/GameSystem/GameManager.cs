@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class GameManager : MonoBehaviour
     private float time = 0;
     private double timeToWave;
     private int level=0;
+    public TMP_Text hordasText;
 
     void Start()
     {
@@ -31,6 +33,8 @@ public class GameManager : MonoBehaviour
         ObjectPool.Instance.Pools.Add(new Pool { Item = healthPickup, Parent = transform.transform, Size = 50, Tag = PoolTagsConstants.PICKUPS_TAG });
         ObjectPool.Instance.Start();
 
+        hordasText = GameObject.Find("NroHordasTXT").GetComponent<TMP_Text>();
+        hordasText.text = $"Rounde: {level +1}";
         enemiesSpawners = FindObjectsOfType<EnemySpawner>(false);
         timeToWave = TimeSpan.FromMinutes(minuteForWave).TotalSeconds;
     }
@@ -47,6 +51,7 @@ public class GameManager : MonoBehaviour
                 item.CreateWave(level);
             }
             time = 0;
+            hordasText.text = $"Rounde: {level + 1}";
         }
     }
 }
