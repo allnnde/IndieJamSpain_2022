@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
         ObjectPool.Instance.Start();
 
         hordasText = GameObject.Find("NroHordasTXT").GetComponent<TMP_Text>();
-        hordasText.text = $"Rounde: {level +1}";
+        hordasText.text = $"Round: {level +1}";
         enemiesSpawners = FindObjectsOfType<EnemySpawner>(false);
         timeToWave = TimeSpan.FromMinutes(minuteForWave).TotalSeconds;
     }
@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
                 item.CreateWave(level);
             }
             time = 0;
-            hordasText.text = $"Rounde: {level + 1}";
+            hordasText.text = $"Round: {level + 1}";
         }
     }
 

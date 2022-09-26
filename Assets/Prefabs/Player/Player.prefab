@@ -1882,7 +1882,7 @@ MonoBehaviour:
     startRageParticle: {fileID: 4065435584528226139}
     finishRageParticle: {fileID: 8659842165157591186}
     healParticle: {fileID: 5156128280318308830}
-    deathParticle: {fileID: 0}
+    deathParticle: {fileID: 1494458208327571588, guid: 7d3d9db3ba0993049a448a07618bc9e3, type: 3}
     inRage: 0
     canDash: 1
   inRage: 0
