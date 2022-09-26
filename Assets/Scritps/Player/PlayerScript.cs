@@ -64,7 +64,8 @@ public class PlayerScript : MonoBehaviour
     {
         health -= dmg;
         AddRage(stats.rageOnDamage);
-        
+        stats.deathParticle?.GetComponent<ParticleSystem>().Emit(1);
+
         lifeBar.fillAmount = health / stats.maxHealth;
 
         if (health <= 0)
@@ -77,7 +78,6 @@ public class PlayerScript : MonoBehaviour
     private void Die()
     {
         gameObject.SetActive(false);
-        stats.deathParticle?.GetComponent<ParticleSystem>().Emit(1);
     }
 
     public void AddRage(float quantity)
@@ -109,8 +109,6 @@ public class PlayerScript : MonoBehaviour
         inRage = true;
         stats.startRageParticle?.GetComponent<ParticleSystem>().Play(true);
         stats.onRageParticle?.GetComponent<ParticleSystem>().Play();
-        stats.startRageParticle?.GetComponent<ParticleSystem>().Emit(1);
-        stats.onRageParticle?.GetComponent<ParticleSystem>().Emit(1);
 
         playerRenderer.GetComponent<SpriteRenderer>().color = stats.rageColor;
         CreateRageBullets();
@@ -133,7 +131,6 @@ public class PlayerScript : MonoBehaviour
         inRage = false;
         stats.onRageParticle?.GetComponent<ParticleSystem>().Stop();
         stats.finishRageParticle?.GetComponent<ParticleSystem>().Play();
-        stats.finishRageParticle?.GetComponent<ParticleSystem>().Emit(1);
 
         var rageBullet = GetComponentsInChildren<RageBulletScript>(true);
         foreach (var item in rageBullet)
@@ -166,10 +163,6 @@ public class PlayerScript : MonoBehaviour
     {
         var rageLeft = rage - stats.decreaseRate;
         rage = Mathf.Max(0, rageLeft);
-        if(rage == 0)
-        {
-            ApplyRageFinal();
-        }
 
     }
 }
